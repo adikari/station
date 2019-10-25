@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -eo pipefail
+
+CURRENT_DIR=$(pwd)
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+
+aws cloudformation deploy \
+--template-file $DIR/stacks/postgres.yml \
+--stack-name projects-rds-$STAGE \
+--parameter-overrides DatabaseName=projects DatabasePassword=$DB_PW
+
+cd $CURRENT_DIR
+
+
