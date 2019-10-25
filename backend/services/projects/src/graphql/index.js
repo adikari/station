@@ -1,5 +1,22 @@
-exports.handler = async function(event, context) {
-  console.log('EVENT: \n' + JSON.stringify(event, null, 2));
+const { ApolloServer, gql } = require('apollo-server-lambda');
 
-  return context.logStreamName;
+// Construct a schema, using GraphQL schema language
+const typeDefs = gql`
+  type Query {
+    projectsHealthCheck: Boolean!
+  }
+`;
+
+// Provide resolver functions for your schema fields
+const resolvers = {
+  Query: {
+    projectsHealthCheck: () => true
+  }
 };
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
+
+exports.handler = server.createHandler();
