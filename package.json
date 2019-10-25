@@ -1,0 +1,11 @@
+{
+  "name": "ideahour",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:adikari/ideahour.git",
+  "author": "subash adhikari <me@subash.com.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "^1.55.1"
+  }
+}

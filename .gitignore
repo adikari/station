@@ -1,0 +1,9 @@
+.build
+.DS_Store
+node_modules
+coverage
+*.log
+.env-*
+.env
+.serverless
+schema.graphql
