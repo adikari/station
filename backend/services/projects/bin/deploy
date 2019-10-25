@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -eo pipefail
+
+if [ -z "$AWS_PROFILE" ]; then
+  echo "No AWS_PROFILE loaded!!"; exit 1;
+fi
+
+CURRENT_AWS_ROLE="$(aws sts get-caller-identity)"
+AWS_ACCOUNT_ID=$(echo "$CURRENT_AWS_ROLE" | jq -r '.Account')
+
+STAGE=""
+
+usage="USAGE: $(basename "$0") [-s|--stage] <stage>
+
+where:
+    -s | --stage        stage for deployment (required)
+    -h | --help         show this help text"
+
+while [ $# -gt 0 ]; do
+    if [[ $1 =~ "--"* ]]; then
+        case $1 in
+            --help|-h) echo "$usage"; exit; ;;
+            --stage|-s) STAGE=$2;;
+        esac
+    fi
+    shift
+done
+
+if [ -z "$STAGE" ]; then
+  echo "$usage"; exit 1;
+fi
+
+export AWS_ACCOUNT_ID
+export STAGE
+
+if [ -z "$AWS_ACCOUNT_ID" ]; then
+  echo "Could not read determine AWS account id.";
+  exit 1;
+fi
+
+CURRENT_DIR=$(pwd)
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+
+echo "Moving to $DIR"
+
+cd "$DIR"
+
+echo "Initiating deploy with: ${CURRENT_AWS_ROLE}"
+echo "AWS Account ID: $AWS_ACCOUNT_ID"
+
+echo "Deploying serverless..."
+sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
+
+cd $CURRENT_DIR
+unset AWS_ACCOUNT_ID
+unset STAGE
