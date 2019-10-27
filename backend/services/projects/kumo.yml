@@ -1,0 +1,10 @@
+provider:
+  name: ssm
+
+stacks:
+  - templateFile: './stacks/postgres.yml'
+    stackName: projects-rds-${opt:stage}
+    parameters:
+      Stage: ${opt:stage}
+      DatabaseName: ${ssm:/${opt:stage}/projects/secret/DATABASE_NAME}
+      DatabasePassword: ${ssm:/${opt:stage}/projects/secret/DATABASE_PASSWORD}

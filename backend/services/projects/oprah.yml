@@ -1,55 +1,9 @@
-service: careers-service
+service: projects-service
 provider:
-  name: ddb
-  tableName: oprah-careers-service-${stage}
-
-config:
-  path: /${stage}/careers/config
-  defaults:
-    TALENTBOOST_HIRER_SENDER_NAME: 'TalentBOOST Guru'
-    TALENTBOOST_HIRER_SENDER_EMAIL: 'talentboost@acloud.guru'
-
-    APPLICATION_TABLE_NAME: 'careers-application-${stage}'
-    USER_APPLICATIONS_INDEX_NAME: 'careers-user-applications-index-${stage}'
-    JOBS_TABLE_NAME: 'careers-jobs-${stage}'
-    JOBS_INDEX_NAME: 'careers-jobs-index-${stage}'
-    HIRER_PROFILES_TABLE_NAME: 'careers-hirer-profile-${stage}'
-    EMPLOYMENT_HISTORY_TABLE_NAME: 'careers-employment-history-${stage}'
-
-    S3_CAREERS_GRAPHQL_SCHEMA_BUCKET: 'acloudguru-careers-graphql-schema-${stage}'
-    S3_CAREERS_SERVICE_CANDIDATE_APPLICATIONS_BUCKET: 'acloudguru-careers-service-candidate-applications-${stage}'
-
-    CLOUDPROFILE_ASSETS_URL: 'https://acloudguru-content-assets-production.s3-accelerate.amazonaws.com/cloud-profile'
-
-  production:
-    SECURE_CANDIDATES_SEARCH_INDEX_NAME: 'secure_candidates_private_prod_careers_candidates'
-
-  required:
-    CANDIDATE_SITE_URL: 'Insert Candidate Site URL - https://acloud.guru'
-    HIRE_SITE_URL: 'Insert Hire site URL - https://learn.acloud.guru'
-
-    # API Gateway
-    INTERNAL_EMAIL_SERVICE_URL: 'https://${stage}-internal-api.acloud.guru/email/graphql'
-    INTERNAL_IDENTITY_SERVICE_URL: 'https://${stage}-internal-api.acloud.guru/identity/graphql'
-    INTERNAL_ORGANISATIONS_SERVICE_URL: 'https://${stage}-internal-api.acloud.guru/organisations/graphql'
-    INTERNAL_CLOUD_PROFILE_SERVICE_URL: 'https://${stage}-internal-api.acloud.guru/cloud-profile/graphql'
-
-    GCP_PROJECT_ID: "Google Cloud project id"
-    GCP_CLIENT_EMAIL: "Google Cloud client email"
+  name: ssm
 
 secret:
-  path: /${stage}/careers/secret
+  path: /${stage}/projects/secret
   required:
-    INTERNAL_IDENTITY_SERVICE_API_KEY: 'Api Key for Identity service https://console.aws.amazon.com/apigateway/home?region=us-east-1#/api-keys'
-    INTERNAL_EMAIL_SERVICE_API_KEY: 'Api Key for Email service https://console.aws.amazon.com/apigateway/home?region=us-east-1#/api-keys'
-    INTERNAL_ORGANISATIONS_SERVICE_API_KEY: 'Api Key for Organisation service https://console.aws.amazon.com/apigateway/home?region=us-east-1#/api-keys'
-    INTERNAL_CLOUD_PROFILE_SERVICE_API_KEY: 'Api Key for Cloud Profile service https://console.aws.amazon.com/apigateway/home?region=us-east-1#/api-keys'
-    IPSTACK_API_ACCESS_KEY: 'Api Key for IPSTACK is in 1password'
-    API_TO_PDF_API_KEY: 'Api Key for Api2Pdf service'
-    SPUTNIK_API_KEY: "https://sputnik.acloud.dev/api-keys"
-    SPLIT_IO_AUTH_KEY: 'Api key for split.io service'
-    GCP_PRIVATE_KEY: "Google Cloud private key"
-    CLOUDINARY_CLOUDNAME: 'Cloudinary cloud name'
-    CLOUDINARY_API_KEY: 'Cloudinary api key'
-    CLOUDINARY_API_SECRET: 'Cloudinary api secret'
-    ENGINE_API_KEY: "https://engine.apollographql.com/service/acloudguru-email/settings"
+    DATABASE_NAME: 'Database name for prisma server'
+    DATABASE_PASSWORD: 'Database password for prisma server'

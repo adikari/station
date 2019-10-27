@@ -10,16 +10,19 @@ CURRENT_AWS_ROLE="$(aws sts get-caller-identity)"
 AWS_ACCOUNT_ID=$(echo "$CURRENT_AWS_ROLE" | jq -r '.Account')
 
 STAGE=""
+CONFIGURE=false
 
 usage="USAGE: $(basename "$0") [-s|--stage] <stage>
 
 where:
     -s | --stage        stage for deployment (required)
+    -c | --configure    push configs to ssm (flag)
     -h | --help         show this help text"
 
 while [ $# -gt 0 ]; do
     if [[ $1 =~ "--"* ]]; then
         case $1 in
+            -c|--configure) CONFIGURE=true;;
             --help|-h) echo "$usage"; exit; ;;
             --stage|-s) STAGE=$2;;
         esac
@@ -46,8 +49,13 @@ echo "Moving to $DIR"
 
 cd "$DIR"
 
+$CONFIGURE && ./node_modules/.bin/oprah run --stage ${STAGE}
+
 echo "Initiating deploy with: ${CURRENT_AWS_ROLE}"
 echo "AWS Account ID: $AWS_ACCOUNT_ID"
+
+echo "Deploying resources..."
+./node_modules/.bin/kumo run --stage "$STAGE"
 
 echo "Deploying serverless..."
 sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
