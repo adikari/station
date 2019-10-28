@@ -21,7 +21,7 @@ const resolvers = {
     projectsHealthCheck: () => true
   },
   Mutation: {
-    projectsEcho: (_, { input }) => ({ echo: input.echo })
+    projectsEcho: (_, { input }, context) => ({ echo: input.echo })
   }
 };
 

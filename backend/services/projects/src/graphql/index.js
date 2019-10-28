@@ -1,19 +1,10 @@
 const { ApolloServer, gql } = require('apollo-server-lambda');
 const { makeSchema } = require('./make-schema');
-
-const makeGraphqlContext = ({ event }) => {
-  if (!event) {
-    return Promise.reject(new Error('No lambda event detected'));
-  }
-
-  return {
-    db: 'hello'
-  };
-};
+const { makeContext } = require('./make-context');
 
 const server = new ApolloServer({
   schema: makeSchema(),
-  context: makeGraphqlContext
+  context: makeContext
 });
 
 exports.handler = server.createHandler();
