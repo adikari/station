@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@a-cloud-guru/kumo@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@a-cloud-guru/kumo/-/kumo-0.3.0.tgz#ada6e9cbf01aa09ef1f7c97f989016f980265f6c"
-  integrity sha512-nnqVy8BkzAE++xlzRJOrhlg9M96uAf0Y3cUVOblKxJhXtRt/cuSE3iCQtraGNb+Qz/EMubjHIkVfuLIDdDhN7g==
+"@a-cloud-guru/kumo@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@a-cloud-guru/kumo/-/kumo-0.4.0.tgz#8953ccf76337e982e1bbed531d9e33a922c079c1"
+  integrity sha512-YQegKgZX67nyiJ+t8iLUeRBHPHR6elF3c3H6sout4GLHn15keeQabWeQB/LwXC1IDIv74LjCB71j8Mx1IVOa5Q==
   dependencies:
     aws-sdk "^2.425.0"
     bluebird "^3.5.1"

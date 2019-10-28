@@ -6,12 +6,12 @@
   "author": "subash adhikari <me@subash.com.au>",
   "license": "MIT",
   "devDependencies": {
+    "@a-cloud-guru/kumo": "^0.4.0",
     "oprah": "^2.8.1",
     "serverless": "^1.55.1",
     "serverless-offline": "^5.12.0"
   },
   "dependencies": {
-    "@a-cloud-guru/kumo": "^0.3.0",
     "apollo-server-lambda": "^2.9.7",
     "graphql": "^14.5.8"
   }
