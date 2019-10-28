@@ -14,9 +14,9 @@ stacks:
     stackName: projects-fargate-${opt:stage}
     parameters:
       Stage: ${opt:stage}
-      DbHost: ${cf:/projects-rds-${opt:stage}/DatabaseEndpoint}
+      DbHost: ${cf:projects-rds-${opt:stage}/DatabaseEndpoint}
       DbUser: ${ssm:/${opt:stage}/projects/secret/DB_USER}
-      DbPort: ${cf:/projects-rds-${opt:stage}/DatabasePort}
+      DbPort: ${cf:projects-rds-${opt:stage}/DatabasePort}
       DbPassword: ${ssm:/${opt:stage}/projects/secret/DB_PASSWORD}
       DbConnector: ${ssm:/${opt:stage}/projects/config/DB_CONNECTOR}
       ManagementApiSecret: ${ssm:/${opt:stage}/projects/secret/PRISMA_API_SECRET}
