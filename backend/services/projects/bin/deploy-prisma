@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -eou pipefail
 
 usage="USAGE: $(basename "$0") [-s|--stage] <stage>
 
