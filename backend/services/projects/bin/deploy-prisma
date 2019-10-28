@@ -2,6 +2,8 @@
 
 set -eou pipefail
 
+STAGE=""
+
 usage="USAGE: $(basename "$0") [-s|--stage] <stage>
 
 where:
