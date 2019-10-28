@@ -80,7 +80,7 @@ typings/
 # nuxt.js build output
 .nuxt
 
-# react / gatsby 
+# react / gatsby
 public/
 
 # vuepress build output
@@ -100,3 +100,5 @@ public/
 .serverless
 
 # End of https://www.gitignore.io/api/serverless,node
+#
+generated/
