@@ -2,8 +2,15 @@ service: projects-service
 provider:
   name: ssm
 
+config:
+  path: /${stage}/careers/config
+  defaults:
+    DB_CONNECTOR: 'postgres'
+
 secret:
   path: /${stage}/projects/secret
   required:
-    DATABASE_NAME: 'Database name for prisma server'
-    DATABASE_PASSWORD: 'Database password for prisma server'
+    DB_NAME: 'Database name for prisma server'
+    DB_USER: 'Database username for prisma server'
+    DB_PASSWORD: 'Database password for prisma server'
+    PRISMA_API_SECRET: 'Prisma Server Management API Secret'

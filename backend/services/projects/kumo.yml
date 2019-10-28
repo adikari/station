@@ -6,5 +6,18 @@ stacks:
     stackName: projects-rds-${opt:stage}
     parameters:
       Stage: ${opt:stage}
-      DatabaseName: ${ssm:/${opt:stage}/projects/secret/DATABASE_NAME}
-      DatabasePassword: ${ssm:/${opt:stage}/projects/secret/DATABASE_PASSWORD}
+      DatabaseUsername: ${ssm:/${opt:stage}/projects/secret/DB_USER}
+      DatabaseName: ${ssm:/${opt:stage}/projects/secret/DB_NAME}
+      DatabasePassword: ${ssm:/${opt:stage}/projects/secret/DB_PASSWORD}
+
+  - templateFile: './stacks/fargate.yml'
+    stackName: projects-fargate-${opt:stage}
+    parameters:
+      Stage: ${opt:stage}
+      DbHost: ${cf:/projects-rds-${opt:stage}/DatabaseEndpoint}
+      DbUser: ${ssm:/${opt:stage}/projects/secret/DB_USER}
+      DbPort: ${cf:/projects-rds-${opt:stage}/DatabasePort}
+      DbPassword: ${ssm:/${opt:stage}/projects/secret/DB_PASSWORD}
+      DbConnector: ${ssm:/${opt:stage}/projects/config/DB_CONNECTOR}
+      ManagementApiSecret: ${ssm:/${opt:stage}/projects/secret/PRISMA_API_SECRET}
+
