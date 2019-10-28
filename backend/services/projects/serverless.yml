@@ -8,6 +8,8 @@ provider:
   region: us-east-1
   versionFunctions: false
   environment:
+    PRISMA_ENDPOINT: ${cf:projects-fargate-${opt:stage}.ExternalUrl}
+    PRISMA_SECRET: ${ssm:/${opt:stage}/projects/secret/PRISMA_SECRET~true}
     STAGE: ${opt:stage}
 
 plugins:

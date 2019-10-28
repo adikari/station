@@ -28,12 +28,19 @@ PRISMA_MANAGEMENT_API_SECRET=$(aws ssm get-parameter \
   --query "Parameter.Value" \
   --output text)
 
+PRISMA_SECRET=$(aws ssm get-parameter \
+  --name /${STAGE}/projects/secret/PRISMA_SECRET \
+  --with-decryption \
+  --query "Parameter.Value" \
+  --output text)
+
 PRISMA_ENDPOINT=$(aws cloudformation describe-stacks \
   --stack-name projects-fargate-${STAGE} \
   --query "Stacks[0].Outputs[?OutputKey=='ExternalUrl'].OutputValue" \
   --output text)
 
 export PRISMA_MANAGEMENT_API_SECRET
+export PRISMA_SECRET
 export PRISMA_ENDPOINT
 export STAGE
 
@@ -42,3 +49,4 @@ prisma deploy
 unset PRISMA_ENDPOINT
 unset PRISMA_MANAGEMENT_API_SECRET
 unset STAGE
+unset PRISMA_SECRET

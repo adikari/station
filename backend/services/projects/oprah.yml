@@ -14,3 +14,4 @@ secret:
     DB_USER: 'Database username for prisma server'
     DB_PASSWORD: 'Database password for prisma server'
     PRISMA_API_SECRET: 'Prisma Server Management API Secret'
+    PRISMA_SECRET: 'Prisma secret'
