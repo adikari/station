@@ -3,7 +3,7 @@ provider:
   name: ssm
 
 config:
-  path: /${stage}/careers/config
+  path: /${stage}/projects/config
   defaults:
     DB_CONNECTOR: 'postgres'
 
