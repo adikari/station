@@ -1,22 +1,19 @@
 const { ApolloServer, gql } = require('apollo-server-lambda');
+const { makeSchema } = require('./make-schema');
 
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Query {
-    projectsHealthCheck: Boolean!
+const makeGraphqlContext = ({ event }) => {
+  if (!event) {
+    return Promise.reject(new Error('No lambda event detected'));
   }
-`;
 
-// Provide resolver functions for your schema fields
-const resolvers = {
-  Query: {
-    projectsHealthCheck: () => true
-  }
+  return {
+    db: 'hello'
+  };
 };
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers
+  schema: makeSchema(),
+  context: makeGraphqlContext
 });
 
 exports.handler = server.createHandler();
