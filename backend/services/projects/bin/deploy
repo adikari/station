@@ -5,6 +5,7 @@ set -eou pipefail
 AWS_ACCOUNT_ID="$(aws sts get-caller-identity --query "Account" --output text)"
 
 STAGE=""
+AWS_REGION="us-east-1"
 CONFIGURE=false
 
 usage="USAGE: $(basename "$0") [-s|--stage] <stage>
@@ -46,17 +47,16 @@ cd "$DIR"
 
 $CONFIGURE && ./node_modules/.bin/oprah run --stage ${STAGE}
 
-echo "Initiating deploy with: ${CURRENT_AWS_ROLE}"
 echo "AWS Account ID: $AWS_ACCOUNT_ID"
 
 echo "Deploying resources..."
 ./node_modules/.bin/kumo run --stage "$STAGE"
 
 echo "Deploying Prisma server"
-./deploy-prisma --stage $STAGE
+./bin/deploy-prisma --stage $STAGE
 
 echo "Deploying serverless..."
-sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
+./node_modules/.bin/sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
 
 cd $CURRENT_DIR
 unset AWS_ACCOUNT_ID
