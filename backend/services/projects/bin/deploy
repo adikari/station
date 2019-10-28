@@ -1,10 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
-
-if [ -z "$AWS_PROFILE" ]; then
-  echo "No AWS_PROFILE loaded!!"; exit 1;
-fi
+set -eou pipefail
 
 AWS_ACCOUNT_ID="$(aws sts get-caller-identity --query "Account" --output text)"
 
@@ -54,31 +50,15 @@ echo "Initiating deploy with: ${CURRENT_AWS_ROLE}"
 echo "AWS Account ID: $AWS_ACCOUNT_ID"
 
 echo "Deploying resources..."
-# ./node_modules/.bin/kumo run --stage "$STAGE"
-
-PRISMA_MANAGEMENT_API_SECRET=$(aws ssm get-parameter \
-  --name /${STAGE}/projects/secret/PRISMA_API_SECRET \
-  --with-decryption \
-  --query "Parameter.Value" \
-  --output text)
-
-PRISMA_ENDPOINT=$(aws cloudformation describe-stacks \
-  --stack-name projects-fargate-${STAGE} \
-  --query "Stacks[0].Outputs[?OutputKey=='ExternalUrl'].OutputValue" \
-  --output text)
-
-export PRISMA_MANAGEMENT_API_SECRET
-export PRISMA_ENDPOINT
+./node_modules/.bin/kumo run --stage "$STAGE"
 
 echo "Deploying Prisma server"
-prisma deploy
+./deploy-prisma --stage $STAGE
 
 echo "Deploying serverless..."
 sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
 
-
 cd $CURRENT_DIR
 unset AWS_ACCOUNT_ID
 unset STAGE
-unset PRISMA_ENDPOINT
-unset PRISMA_MANAGEMENT_API_SECRET
+

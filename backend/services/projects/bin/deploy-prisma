@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -eo pipefail
+
+usage="USAGE: $(basename "$0") [-s|--stage] <stage>
+
+where:
+    -s | --stage        stage for deployment (required)
+    -h | --help         show this help text"
+
+while [ $# -gt 0 ]; do
+    if [[ $1 =~ "--"* ]]; then
+        case $1 in
+            --help|-h) echo "$usage"; exit; ;;
+            --stage|-s) STAGE=$2;;
+        esac
+    fi
+    shift
+done
+
+if [ -z "$STAGE" ]; then
+  echo "$usage"; exit 1;
+fi
+
+PRISMA_MANAGEMENT_API_SECRET=$(aws ssm get-parameter \
+  --name /${STAGE}/projects/secret/PRISMA_API_SECRET \
+  --with-decryption \
+  --query "Parameter.Value" \
+  --output text)
+
+PRISMA_ENDPOINT=$(aws cloudformation describe-stacks \
+  --stack-name projects-fargate-${STAGE} \
+  --query "Stacks[0].Outputs[?OutputKey=='ExternalUrl'].OutputValue" \
+  --output text)
+
+export PRISMA_MANAGEMENT_API_SECRET
+export PRISMA_ENDPOINT
+export STAGE
+
+prisma deploy
+
+unset PRISMA_ENDPOINT
+unset PRISMA_MANAGEMENT_API_SECRET
+unset STAGE

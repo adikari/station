@@ -5,6 +5,10 @@
   "repository": "git@github.com:adikari/ideahour.git",
   "author": "subash adhikari <me@subash.com.au>",
   "license": "MIT",
+  "scripts": {
+    "deploy:prisma": "./bin/deploy-prisma",
+    "deploy": "./bin/deploy"
+  },
   "devDependencies": {
     "@a-cloud-guru/kumo": "^0.4.0",
     "oprah": "^2.8.1",
