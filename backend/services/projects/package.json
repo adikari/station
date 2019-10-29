@@ -7,18 +7,29 @@
   "license": "MIT",
   "scripts": {
     "deploy:prisma": "./bin/deploy-prisma",
-    "deploy": "./bin/deploy"
-  },
-  "devDependencies": {
-    "@a-cloud-guru/kumo": "^0.4.0",
-    "oprah": "^2.8.1",
-    "serverless": "^1.55.1",
-    "serverless-offline": "^5.12.0"
+    "deploy": "./bin/deploy",
+    "lint": "eslint src --ignore-pattern src/generated/* --color",
+    "test": "jest"
   },
   "dependencies": {
     "apollo-server-lambda": "^2.9.7",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
     "prisma-client-lib": "^1.34.10"
+  },
+  "devDependencies": {
+    "@a-cloud-guru/kumo": "^0.4.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "oprah": "^2.8.1",
+    "prettier": "^1.18.2",
+    "serverless": "^1.55.1",
+    "serverless-offline": "^5.12.0"
   }
 }
