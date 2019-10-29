@@ -2,12 +2,14 @@
   "extends": [
     "standard",
     "prettier",
-    "prettier/standard"
+    "prettier/standard",
+    "plugin:jest/recommended"
   ],
   "plugins": [
     "import",
     "prettier",
-    "standard"
+    "standard",
+    "jest"
   ],
   "parserOptions": {
     "ecmaVersion": 2017
