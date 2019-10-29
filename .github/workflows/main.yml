@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    paths:
+    - backend/services/projects
 
 jobs:
   build:
@@ -16,11 +19,18 @@ jobs:
       with:
         node-version: 10.x
 
-    - name: npm install
-      run: npm install
+    - name: Install yarn dependencies
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install
 
-    - name: npm test
-      run: npm test
+    - name: Run Lint
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: lint
 
-    - name: Lint
-      run: npm run lint
+    - name: Run unit tests
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: test
+
