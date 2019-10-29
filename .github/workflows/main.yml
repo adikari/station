@@ -3,7 +3,7 @@ name: Main Build
 on:
   push:
     paths:
-    - backend/services/projects
+    - ./backend/services/projects/*
 
 jobs:
   build:
