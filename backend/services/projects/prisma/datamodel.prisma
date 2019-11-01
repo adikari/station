@@ -1,11 +1,42 @@
 type User {
   id: ID! @id
+  username: String! @unique
+  email: String! @unique
+  firstname: String
+  lastname: String
+  accessRole: AccessRole!
+  followingProjects: [Project] @relation(name: "FollowingProjects")
+  owningProjects: [Project] @relation(name: "OwningProjects")
+}
+
+type Position {
+  id: ID! @id
   name: String!
-  fullname: String!
+  description: String
+  user: User
+}
+
+enum AccessRole {
+  ADMIN
+  USER
+}
+
+type Tag {
+  id: ID! @id
+  name: String! @unique
 }
 
 type Project {
   id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  shortDescription: String
   name: String!
-  description: String!
+  thumbnail: String
+  cover: String
+  description: String
+  positions: [Position]
+  followers: [User] @relation(name: "FollowingProjects")
+  owner: User! @relation(name: "OwningProjects")
+  tags: [Tag]
 }
