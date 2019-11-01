@@ -5,6 +5,15 @@ const typeDefs = `
     projects: [Project]
   }
 
+  extend type Mutation {
+    createProject(input: CreateProjectInput!): Project
+  }
+
+  input CreateProjectInput {
+    name: String!
+    description: String!
+  }
+
   type Project {
     id: ID
     name: String
@@ -14,7 +23,10 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    projects: (parent, args, { project }) => project.getProjects()
+    projects: (_, __, { project }) => project.getProjects()
+  },
+  Mutation: {
+    createProject: (_, { input }, { project }) => project.createProject(input)
   },
   Project: {
     id: property('id'),
