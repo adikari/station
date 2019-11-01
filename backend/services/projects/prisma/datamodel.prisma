@@ -24,6 +24,7 @@ enum AccessRole {
 type Tag {
   id: ID! @id
   name: String! @unique
+  projects: [Project] @relation(name: "ProjectsByTag")
 }
 
 type Project {
@@ -38,5 +39,5 @@ type Project {
   positions: [Position]
   followers: [User] @relation(name: "FollowingProjects")
   owner: User! @relation(name: "OwningProjects")
-  tags: [Tag]
+  tags: [Tag] @relation(name: "ProjectsByTag")
 }
