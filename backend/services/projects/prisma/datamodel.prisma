@@ -14,6 +14,7 @@ type Position {
   name: String!
   description: String
   user: User
+  projects: [Project] @relation(name: "ProjectsByPosition")
 }
 
 enum AccessRole {
@@ -36,7 +37,7 @@ type Project {
   thumbnail: String
   cover: String
   description: String
-  positions: [Position]
+  positions: [Position] @relation(name: "ProjectsByPosition")
   followers: [User] @relation(name: "FollowingProjects")
   owner: User! @relation(name: "OwningProjects")
   tags: [Tag] @relation(name: "ProjectsByTag")
