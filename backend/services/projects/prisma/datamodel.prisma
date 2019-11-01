@@ -3,3 +3,9 @@ type User {
   name: String!
   fullname: String!
 }
+
+type Project {
+  id: ID! @id
+  name: String!
+  description: String!
+}

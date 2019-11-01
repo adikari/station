@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "deploy:prisma": "./bin/deploy-prisma",
-    "deploy": "./bin/deploy"
+    "deploy": "./bin/deploy",
+    "test": "jest"
   },
   "devDependencies": {
     "@a-cloud-guru/kumo": "^0.4.0",

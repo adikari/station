@@ -1,9 +1,10 @@
 const { makeExecutableSchema } = require('graphql-tools');
 
 const rootSchema = require('./schemas/root');
+const projectSchema = require('./schemas/project');
 
 const makeSchema = () => {
-  const schemas = [rootSchema];
+  const schemas = [rootSchema, projectSchema];
 
   const typeDefs = schemas.reduce((acc, schema) => acc.concat(schema.typeDefs), '');
 
