@@ -5,7 +5,12 @@ const makeContext = ({ event }) => {
     return Promise.reject(new Error('No lambda event detected'));
   }
 
-  return { project };
+  return {
+    project,
+    viewer: {
+      id: 'ck2ppvh7e4q9s0714yi58vdqf'
+    }
+  };
 };
 
 module.exports = { makeContext };
