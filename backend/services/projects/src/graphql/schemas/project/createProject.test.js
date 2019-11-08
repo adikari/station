@@ -31,7 +31,15 @@ describe('Mutation: createProject', () => {
     const result = await graphql(makeSchema(), query, null, context);
 
     expect(result.errors).toBeUndefined();
-    expect(mockCreateProject).toHaveBeenCalledWith({ name: 'name', description: 'description' });
+    expect(mockCreateProject).toHaveBeenCalledWith({
+      name: 'name',
+      description: 'description',
+      owner: {
+        connect: {
+          id: 'ck2ppvh7e4q9s0714yi58vdqf'
+        }
+      }
+    });
     expect(result.data.createProject).toEqual({
       id: '345'
     });

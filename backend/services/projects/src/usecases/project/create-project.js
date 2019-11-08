@@ -1,3 +1,12 @@
-const makeCreateProject = ({ db }) => ({ name, description }) => db.createProject({ name, description });
+const makeCreateProject = ({ db }) => ({ name, description, owner }) =>
+  db.createProject({
+    name,
+    description,
+    owner: {
+      connect: {
+        id: owner
+      }
+    }
+  });
 
 module.exports = { makeCreateProject };
