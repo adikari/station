@@ -1,0 +1,6 @@
+./idea
+coverage
+node_modules
+.next
+cypress/screenshots/*
+.env.build
