@@ -1,0 +1,9 @@
+service: projects-frontend
+provider:
+  name: ssm
+
+secret:
+  path: /${stage}/projects-frontend/secret
+  required:
+    NETLIFY_SITE_ID: "Netlify Site ID"
+    NETLIFY_TOKEN: "Netlify Token"
