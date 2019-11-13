@@ -14,5 +14,8 @@ const env = {};
 
 module.exports = withPlugins([[withTerserPlugin], [withPolyfills], [withCSS], [withNextLess], [withImages]], {
   env,
-  target: 'serverless'
+  target: 'serverless',
+  devIndicators: {
+    autoPrerender: false
+  }
 });
