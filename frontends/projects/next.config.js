@@ -1,10 +1,9 @@
 const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
 const withCSS = require('@zeit/next-css');
-const withSourceMaps = require('@zeit/next-source-maps')({
-  devtool: 'source-map'
-});
+const { withNextLess } = require('./src/plugins/withNextLess');
 const { withPolyfills } = require('./src/plugins/withPolyfills');
+const { withTerserPlugin } = require('./src/plugins/withTerserPlugin');
 
 // FIX: prevents error when .css files are required by node
 if (typeof require !== 'undefined') {
@@ -13,7 +12,7 @@ if (typeof require !== 'undefined') {
 
 const env = {};
 
-module.exports = withPlugins([[withSourceMaps], [withPolyfills], [withCSS], [withImages]], {
+module.exports = withPlugins([[withTerserPlugin], [withPolyfills], [withCSS], [withNextLess], [withImages]], {
   env,
   target: 'serverless'
 });

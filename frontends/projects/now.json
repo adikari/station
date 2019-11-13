@@ -16,11 +16,11 @@
   ],
   "routes": [
     {
-      "src": "/public/(.*)(png|xml|txt|ttf|eot|woff)$",
+      "src": "/static/(.*)(png|xml|txt|ttf|eot|woff)$",
       "headers": {
         "cache-control": "s-maxage=300"
       },
-      "dest": "public/$1$2"
+      "dest": "static/$1$2"
     },
     {
       "src": "/favicon.ico",
@@ -28,7 +28,7 @@
         "content-type": "image/x-icon",
         "cache-control": "s-maxage=300"
       },
-      "dest": "public/favicon.ico"
+      "dest": "/favicon.ico"
     },
     {
       "src": "/projects",

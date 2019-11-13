@@ -2,7 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import { RouteProgress } from 'components/nprogress';
-import 'styles/styles.css';
+import 'styles/styles.less';
 
 export default class ProjectsApp extends App {
   static async getInitialProps({ Component, ctx }) {

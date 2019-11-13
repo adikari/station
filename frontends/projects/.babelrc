@@ -21,6 +21,7 @@
       {
         "root": ["./src/"]
       }
-    ]
+    ],
+    ["inline-react-svg"]
   ]
 }
