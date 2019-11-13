@@ -11,5 +11,9 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/'],
   setupFiles: ['./src/setupTests.js'],
   setupFilesAfterEnv: ['./node_modules/@testing-library/jest-dom/extend-expect.js'],
+  moduleNameMapper: {
+    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js'
+  },
   watchman: true
 };

@@ -1,17 +1,30 @@
-import App, { Container } from 'next/app';
+import React from 'react';
+import App from 'next/app';
 import Head from 'next/head';
+import { RouteProgress } from 'components/nprogress';
+import 'styles/styles.css';
 
 export default class ProjectsApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = { query: null };
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+    // Expose the query
+    pageProps.query = ctx.query;
+    return { pageProps };
+  }
+
   render() {
-    const { Component, pageProps, router } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
-      <Container>
+      <RouteProgress>
         <Head>
-          <title>Projects</title>
+          <title>Project</title>
         </Head>
-        <Component {...pageProps} router={router} />
-      </Container>
+        <Component {...pageProps} />
+      </RouteProgress>
     );
   }
 }

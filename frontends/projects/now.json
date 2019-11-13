@@ -20,7 +20,7 @@
       "headers": {
         "cache-control": "s-maxage=300"
       },
-      "dest": "static/$1$2"
+      "dest": "public/$1$2"
     },
     {
       "src": "/favicon.ico",
