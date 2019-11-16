@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <defs>
+        <filter x="-103.3%" y="-103.3%" width="306.7%" height="306.7%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="7" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.258823529   0 0 0 0 0.490196078   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="MVP-Passionfruit---Apply-on-Platform-without-Search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Passionfruit-User-Dashboard" transform="translate(-135.000000, -405.000000)">
+            <g id="OPTION-2b" transform="translate(144.000000, 217.000000)">
+                <g id="Group-15">
+                    <g id="Group-2" filter="url(#filter-1)" transform="translate(5.000000, 200.000000)">
+                        <rect id="Rectangle" x="0" y="0" width="30" height="30"></rect>
+                        <path d="M2.55555556,2.54545455 L15.3333333,2.54545455 L15.3333333,7.63636364 L20.4444444,7.63636364 L20.4444444,11.4545455 L23,11.4545455 L23,5.83672727 L17.1401111,0 L2.55555556,0 C1.14616667,0 0,1.14290909 0,2.54545455 L0,25.4545455 C0,26.8583636 1.14616667,28 2.55555556,28 L12.7777778,28 L12.7777778,25.4545455 L2.55555556,25.4545455 L2.55555556,2.54545455 Z" id="Path" fill="#427DFF"></path>
+                        <rect id="Rectangle" fill="#427DFF" x="5" y="12" width="10" height="2"></rect>
+                        <rect id="Rectangle" fill="#427DFF" x="6" y="16" width="6" height="2"></rect>
+                        <path d="M25.0766071,23.3680522 C25.7097632,22.4122765 26.0831319,21.2716288 26.0831319,20.041566 C26.0831319,16.7102465 23.3728855,14 20.041566,14 C16.7102465,14 14,16.7102465 14,20.041566 C14,23.3728855 16.7102465,26.0831319 20.041566,26.0831319 C21.2716288,26.0831319 22.4134848,25.7097632 23.3680522,25.0766071 L27.2914451,29 L29,27.2914451 L25.0766071,23.3680522 Z M20.041566,23.6665056 C18.0430159,23.6665056 16.4166264,22.040116 16.4166264,20.041566 C16.4166264,18.0430159 18.0430159,16.4166264 20.041566,16.4166264 C22.040116,16.4166264 23.6665056,18.0430159 23.6665056,20.041566 C23.6665056,22.040116 22.040116,23.6665056 20.041566,23.6665056 Z" id="Shape" fill="#427DFF" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
