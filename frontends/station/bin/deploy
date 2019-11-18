@@ -6,7 +6,7 @@ NOW_TEAM="acloudguru"
 NOW_DEPLOYMENT_ID=$(now \
   --token "$NOW_TOKEN" \
   --scope "$NOW_TEAM" \
-  --build-env ACG_ENV="$ACG_ENV" \
+  --build-env STAGE="$STAGE" \
   --build-env INTERNAL_ALIAS="$INTERNAL_ALIAS")
 
 yarn now alias set "$NOW_DEPLOYMENT_ID" "$INTERNAL_ALIAS" --token "$NOW_TOKEN" --scope "$NOW_TEAM"
