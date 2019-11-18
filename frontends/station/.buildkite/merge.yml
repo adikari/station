@@ -1,0 +1,22 @@
+steps:
+  - label: "Deploy station to staging"
+    trigger: "station-deploy"
+    build:
+      commit: "$BUILDKITE_COMMIT"
+      message: "$BUILDKITE_MESSAGE"
+      branch: "$BUILDKITE_BRANCH"
+      env:
+        ACG_ENV: "staging"
+        INTERNAL_ALIAS: "https://staging-internal-station.acloud.dev"
+  - wait
+  - block: ":rocket: Release!"
+  - label: "Deploy station to production"
+    trigger: "station-deploy"
+    build:
+      commit: "$BUILDKITE_COMMIT"
+      message: "$BUILDKITE_MESSAGE"
+      branch: "$BUILDKITE_BRANCH"
+      env:
+        ACG_ENV: "production"
+        INTERNAL_ALIAS: "https://production-internal-station.acloud.dev"
+

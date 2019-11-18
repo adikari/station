@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+const CONFIG_DIR = '../src/config';
+
+const configs = fs
+  .readdirSync(path.resolve(__dirname, CONFIG_DIR))
+  .filter(file => /\.config\.js/.test(file))
+  .reduce(
+    (accum, current) => {
+      const config = require(path.resolve(
+        __dirname,
+        `${CONFIG_DIR}/${current}`
+      ));
+
+      accum.keys.push(...Object.keys(config));
+      accum.keys = [...new Set(accum.keys)];
+
+      accum.config.push({
+        file: current,
+        config,
+      });
+
+      return accum;
+    },
+    { keys: [], config: [] }
+  );
+
+const errors = configs.config.reduce((accum, current) => {
+  const missing = configs.keys.filter(
+    key => !current.config.hasOwnProperty(key)
+  );
+
+  if (missing.length > 0) {
+    accum.push({
+      file: current.file,
+      missing,
+    });
+  }
+
+  return accum;
+}, []);
+
+if (errors.length > 0) {
+  console.error('Missing config values in: ');
+  errors.forEach(error => {
+    console.log(`${error.file}:`, error.missing);
+  });
+
+  process.exit(1);
+}

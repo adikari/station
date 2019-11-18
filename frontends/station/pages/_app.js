@@ -1,12 +1,20 @@
 import React from 'react';
-import App from 'next/app';
+import PropTypes from 'prop-types';
 
-class StationApp extends App {
-  render() {
-    const {Component, pageProps} = this.props;
+import { ErrorBoundary } from 'clients/bugsnag';
 
-    return <Component {...pageProps} />;
-  }
-}
+const StationApp = ({ pageProps, Component, router }) => {
+  return (
+    <ErrorBoundary>
+      <Component {...router} {...pageProps} />
+    </ErrorBoundary>
+  );
+};
+
+StationApp.propTypes = {
+  pageProps: PropTypes.any,
+  Component: PropTypes.any,
+  router: PropTypes.any
+};
 
 export default StationApp;

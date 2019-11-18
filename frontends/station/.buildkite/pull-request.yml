@@ -1,0 +1,14 @@
+steps:
+  - label: Run Station Frontend PR
+    command:
+      - "yarn full_build"
+      # - "yarn apollo:schema:check"
+    agents:
+      queue: careers-team
+    plugins:
+      docker-compose#v3.0.1:
+        run: station
+        env:
+          - ACG_ENV=staging
+          - NPM_TOKEN
+          - ENGINE_API_KEY

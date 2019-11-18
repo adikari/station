@@ -1,0 +1,17 @@
+steps:
+  - label: 'Deploying station to ${INTERNAL_ALIAS}'
+    command: 'yarn deploy'
+    agents:
+      queue: careers-team
+    concurrency: 1
+    concurrency_group: 'profile-deploy-${STAGE}'
+    plugins:
+      - docker-compose#v2.0.0:
+          run: station
+          env:
+            - STAGE
+            - INTERNAL_ALIAS
+            - NPM_TOKEN
+            - NOW_TOKEN
+            - BUILDKITE_COMMIT
+            - BUILDKITE_BUILD_NUMBER
