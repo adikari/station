@@ -1,9 +1,4 @@
 {
   "version": 2,
-  "name": "station",
-  "build": {
-    "env": {
-      "NPM_TOKEN": "@npm-token"
-    }
-  }
+  "name": "station"
 }

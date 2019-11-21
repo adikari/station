@@ -16,7 +16,6 @@
     "lint": "eslint 'pages/**/*.js' 'src/**/*.js'",
     "test": "jest",
     "full_build": "yarn lint && yarn test && yarn build",
-    "predeploy": "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc",
     "deploy": "./bin/deploy"
   },
   "dependencies": {
