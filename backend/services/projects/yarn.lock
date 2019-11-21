@@ -5393,11 +5393,6 @@ lodash.toarray@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
   integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
 
-lodash.topairs@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/lodash.topairs/-/lodash.topairs-4.3.0.tgz#3b6deaa37d60fb116713c46c5f17ea190ec48d64"
-  integrity sha1-O23qo31g+xFnE8RsXxfqGQ7EjWQ=
-
 lodash.uniqby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.uniqby/-/lodash.uniqby-4.7.0.tgz#d99c07a669e9e6d24e1362dfe266c67616af1302"
@@ -6199,16 +6194,17 @@ opn@^5.1.0, opn@^5.5.0:
   dependencies:
     is-wsl "^1.1.0"
 
-oprah@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/oprah/-/oprah-2.8.1.tgz#76c87ee7412f44245cd7d496498057b19dd5d3f9"
-  integrity sha512-iBFTSXiAMA1NoX6R/wtO/Wwhrt70cvDYSTHrOhaOU4m3SXhoYHa1Dh3LsxV/xKp9QB08mvU9eomPPOOHnE7Otw==
+oprah@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/oprah/-/oprah-3.0.0.tgz#6b3a9e8d01c86fdc013e85eca5b76992fc01a404"
+  integrity sha512-1IZghLk47S2kOJ86FJjijeQi3iXOF6Pb6LMvv1B/us8jQNTazOCV/HC90Meqn73ReBE99Ti38m3iu6FeBUErLA==
   dependencies:
     aws-sdk "^2.263.1"
     bluebird "^3.5.1"
     cfn "^1.8.1"
     chalk "^2.4.1"
     commander "^2.19.0"
+    dataloader "^1.4.0"
     decimal.js-light "^2.5.0"
     deep-map "^1.5.0"
     execa "^1.0.0"
@@ -6222,7 +6218,6 @@ oprah@^2.8.1:
     lodash.mapvalues "^4.6.0"
     lodash.padstart "^4.6.1"
     lodash.template "^4.4.0"
-    lodash.topairs "^4.3.0"
     lodash.values "^4.3.0"
     prompt "^1.0.0"
     root-path "^0.2.1"
