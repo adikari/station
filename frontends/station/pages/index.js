@@ -1,5 +1,10 @@
 import React from 'react';
+import NavBar from 'components/navigation';
 
-const IndexPage = () => <p>welcome to ACG Station</p>;
+const IndexPage = () => (
+  <div>
+    <NavBar />
+  </div>
+);
 
 export default IndexPage;
