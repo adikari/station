@@ -7,7 +7,7 @@ config:
   defaults:
     USER_TABLE_NAME: 'users-${stage}'
 
-# secret:
-#   path: /${stage}/user/secret
-#   required:
-#     DB_NAME: 'Database name for prisma server'
+secret:
+  path: /${stage}/user/secret
+  required:
+    SOME_KEY: 'Database name for prisma server'
