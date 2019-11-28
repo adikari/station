@@ -12,7 +12,7 @@
     "lint": "eslint --ignore-pattern 'src/generated' 'src/**/*.js'"
   },
   "dependencies": {
-    "apollo-server-lambda": "^2.9.7",
+    "apollo-server-lambda": "^2.9.9",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
     "lodash.merge": "^4.6.2",
