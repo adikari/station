@@ -1,0 +1,13 @@
+service: user-service
+provider:
+  name: ssm
+
+config:
+  path: /${stage}/projects/config
+  defaults:
+    DB_CONNECTOR: 'postgres'
+
+secret:
+  path: /${stage}/projects/secret
+  required:
+    DB_NAME: 'Database name for prisma server'
