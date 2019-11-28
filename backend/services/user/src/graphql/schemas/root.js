@@ -1,27 +1,27 @@
 const typeDefs = `
     type Query {
-      projectsHealthCheck: Boolean!
+      userHealthCheck: Boolean!
     }
 
     type Mutation {
-      projectsEcho(input: ProjectsEchoInput!): ProjectsEchoResponse
+      userEcho(input: UserEchoInput!): UserEchoResponse
     }
 
-    input ProjectsEchoInput {
+    input UserEchoInput {
         echo: String
     }
 
-    type ProjectsEchoResponse {
+    type UserEchoResponse {
         echo: String
     }
 `;
 
 const resolvers = {
   Query: {
-    projectsHealthCheck: () => true
+    userHealthCheck: () => true
   },
   Mutation: {
-    projectsEcho: (_, { input }, context) => ({ echo: input.echo })
+    userEcho: (_, { input }) => ({ echo: input.echo })
   }
 };
 

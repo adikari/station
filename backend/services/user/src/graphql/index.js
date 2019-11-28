@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require('apollo-server-lambda');
+const { ApolloServer } = require('apollo-server-lambda');
 const { makeSchema } = require('./make-schema');
 const { makeContext } = require('./make-context');
 

@@ -3,11 +3,11 @@ provider:
   name: ssm
 
 config:
-  path: /${stage}/projects/config
+  path: /${stage}/user/config
   defaults:
-    DB_CONNECTOR: 'postgres'
+    USER_TABLE_NAME: 'users-${stage}'
 
-secret:
-  path: /${stage}/projects/secret
-  required:
-    DB_NAME: 'Database name for prisma server'
+# secret:
+#   path: /${stage}/user/secret
+#   required:
+#     DB_NAME: 'Database name for prisma server'

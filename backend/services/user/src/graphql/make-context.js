@@ -1,4 +1,4 @@
-const project = require('../usecases/project');
+const user = require('../usecases/user');
 
 const makeContext = ({ event }) => {
   if (!event) {
@@ -6,10 +6,8 @@ const makeContext = ({ event }) => {
   }
 
   return {
-    project,
-    viewer: {
-      id: 'ck2ppvh7e4q9s0714yi58vdqf'
-    }
+    user,
+    viewer: {}
   };
 };
 

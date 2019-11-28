@@ -6,3 +6,4 @@ stacks:
     stackName: user-stateful-${opt:stage}
     parameters:
       Stage: ${opt:stage}
+      UserTableName: ${ssm:/${opt:stage}/user/config/USER_TABLE_NAME}
