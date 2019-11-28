@@ -41,7 +41,7 @@ Resources:
                   - dynamodb:BatchWriteItem
                   - dynamodb:PutItem
                 Resource:
-                  - !Ref UserTable
+                  - !GetAtt UserTable.Arn
 
   UserTable:
     Type: AWS::DynamoDB::Table
