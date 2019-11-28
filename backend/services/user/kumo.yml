@@ -1,0 +1,9 @@
+provider:
+  name: ssm
+
+stacks:
+  - templateFile: './stacks/stateful.yml'
+    stackName: user-stateful-${opt:stage}
+    parameters:
+      Stage: ${opt:stage}
+      UserTableName: ${ssm:/${opt:stage}/user/config/USER_TABLE_NAME}
