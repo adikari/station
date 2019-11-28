@@ -1,10 +1,5 @@
 type User {
   id: ID! @id
-  username: String! @unique
-  email: String! @unique
-  firstname: String
-  lastname: String
-  accessRole: AccessRole!
   followingProjects: [Project] @relation(name: "FollowingProjects")
   owningProjects: [Project] @relation(name: "OwningProjects")
 }
@@ -15,11 +10,6 @@ type Position {
   description: String
   user: User
   projects: [Project] @relation(name: "ProjectsByPosition")
-}
-
-enum AccessRole {
-  ADMIN
-  USER
 }
 
 type Tag {
