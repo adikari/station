@@ -9,14 +9,9 @@ const typeDefs = `
     lastname: String
   }
 
-  enum AccessRole {
-    ADMIN
-    USER
-  }
-
   input CreateUserInput {
-    username: String!
     email: String!
+    username: String!
     firstname: String
     lastname: String
   }
