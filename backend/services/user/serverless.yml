@@ -10,6 +10,7 @@ provider:
   role: ${cf:user-stateful-${opt:stage}.LambdaExecutionRole}
   environment:
     STAGE: ${opt:stage}
+    USER_TABLE_NAME: ${ssm:/${opt:stage}/user/config/USER_TABLE_NAME}
 
 plugins:
   - serverless-offline

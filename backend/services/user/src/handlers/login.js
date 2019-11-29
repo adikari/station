@@ -1,15 +1,22 @@
 const get = require('lodash.get');
+const { handleUserLogin } = require('../usecases/user');
 
 const handler = async event => {
   const { data } = JSON.parse(event.body);
+  const auth0User = get(data, 'user');
 
-  const userId = get(data, 'user.user_id') || '';
+  const user = {
+    email: auth0User.email,
+    id: auth0User.user_id,
+    picture: auth0User.picture,
+    username: auth0User.name
+  };
 
-  console.log('userid', userId);
+  const response = await handleUserLogin(user);
 
   return {
     statusCode: 200,
-    body: JSON.stringify({})
+    body: JSON.stringify(response)
   };
 };
 
