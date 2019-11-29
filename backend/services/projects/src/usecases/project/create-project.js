@@ -1,4 +1,4 @@
-const makeCreateProject = ({ db }) => ({ name, description, owner }) =>
+export const makeCreateProject = ({ db }) => ({ name, description, owner }) =>
   db.createProject({
     name,
     description,
@@ -8,5 +8,3 @@ const makeCreateProject = ({ db }) => ({ name, description, owner }) =>
       }
     }
   });
-
-module.exports = { makeCreateProject };

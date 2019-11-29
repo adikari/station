@@ -1,4 +1,4 @@
-const { graphql } = require('graphql');
+import { graphql } from 'graphql';
 
 const mockProjects = jest.fn();
 jest.mock('../../../generated/prisma-client', () => {
@@ -17,9 +17,11 @@ describe('Query: projects', () => {
     const query = `
         {
           projects {
-            id
-            name
-            description
+            projects {
+              id
+              name
+              description
+            }
           }
         }
     `;
@@ -37,12 +39,14 @@ describe('Query: projects', () => {
     const result = await graphql(makeSchema(), query, null, context);
 
     expect(result.errors).toBeUndefined();
-    expect(result.data.projects).toEqual([
-      {
-        id: '345',
-        name: 'My Project',
-        description: 'Some description'
-      }
-    ]);
+    expect(result.data.projects).toEqual({
+      projects: [
+        {
+          id: '345',
+          name: 'My Project',
+          description: 'Some description'
+        }
+      ]
+    });
   });
 });
