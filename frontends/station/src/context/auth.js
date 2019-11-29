@@ -1,9 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import PropTypes from 'prop-types';
+import { getConfig } from 'config/get-config';
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
+
+const {
+  AUTH0_CLIENT_ID,
+  AUTH0_AUDIENCE,
+  AUTH0_DOMAIN,
+  AUTH0_REDIRECT_URL
+} = getConfig();
+
+const initOptions = {
+  domain: AUTH0_DOMAIN,
+  client_id: AUTH0_CLIENT_ID,
+  redirect_uri: AUTH0_REDIRECT_URL,
+  audience: AUTH0_AUDIENCE
+};
 
 export const Auth0Context = React.createContext();
 
@@ -11,8 +26,7 @@ export const useAuth = () => useContext(Auth0Context);
 
 export const Auth0Provider = ({
   children,
-  onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
-  ...initOptions
+  onRedirectCallback = DEFAULT_REDIRECT_CALLBACK
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
@@ -26,16 +40,14 @@ export const Auth0Provider = ({
 
       if (window.location.search.includes('code=')) {
         const { appState } = await auth0FromHook.handleRedirectCallback();
-        console.log('app state', appState);
         onRedirectCallback(appState);
       }
 
       const authenticated = await auth0FromHook.isAuthenticated();
-      console.log('authenticated', authenticated);
 
       setIsAuthenticated(authenticated);
 
-      if (isAuthenticated) {
+      if (authenticated) {
         const foundUser = await auth0FromHook.getUser();
         setUser(foundUser);
       }

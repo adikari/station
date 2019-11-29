@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from 'context/auth';
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth();
 
   return (
     <div>
