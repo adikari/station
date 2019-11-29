@@ -4,32 +4,29 @@ const { makeContext } = require('../../make-context');
 const { makeSchema } = require('../../make-schema');
 const { getEvent } = require('../../../util/testUtil');
 
-const mockQuery = jest.fn();
-DynamoDB.DocumentClient.prototype.query = mockQuery;
+const mockGet = jest.fn();
+DynamoDB.DocumentClient.prototype.get = mockGet;
 
-describe('#Query.userByEmail', () => {
-  it('gets user by email', async () => {
+describe('#Query.user', () => {
+  it('gets user', async () => {
     const query = `
       {
-        userByEmail(email: "anton@foo.com") {
+        user {
           id
         }
       }
     `;
 
-    mockQuery.mockReturnValue({
-      promise: () => Promise.resolve({ Items: [{ userId: 123 }] })
+    mockGet.mockReturnValue({
+      promise: () => Promise.resolve({ Item: { userId: 123 } })
     });
 
     const context = makeContext({ event: getEvent({ id: '123' }) });
 
     const { data, errors } = await graphql(makeSchema(), query, null, context);
 
-    expect(mockQuery.mock.calls[0][0].ExpressionAttributeValues).toEqual({
-      ':hkey': 'anton@foo.com'
-    });
-
+    expect(mockGet.mock.calls[0][0].Key).toEqual({ userId: '123' });
     expect(errors).toBeUndefined();
-    expect(data.userByEmail).toEqual({ id: '123' });
+    expect(data.user).toEqual({ id: '123' });
   });
 });
