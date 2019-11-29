@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { getAuth0Cilent } from 'clients/auth0';
 import PropTypes from 'prop-types';
+import { getAuth0Cilent } from 'clients/auth0';
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
