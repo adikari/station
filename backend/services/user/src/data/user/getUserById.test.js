@@ -13,6 +13,7 @@ jest.mock('../../config', () => ({
 jest.mock('../../util/logger', () => ({
   logger: { error: mockError }
 }));
+
 const mockUser = {
   userId: 'anton',
   email: 'anton@foo.com',

@@ -1,5 +1,5 @@
 const logger = {
-  log: data => console.log(JSON.stringify(data)),
+  log: (msg, data) => console.log(msg, JSON.stringify(data)),
   error: (msg, error) => console.log(msg, JSON.stringify(error))
 };
 
