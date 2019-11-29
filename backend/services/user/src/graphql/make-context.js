@@ -1,4 +1,5 @@
 const user = require('../usecases/user');
+const { getViewer } = require('../util/viewer');
 
 const makeContext = ({ event }) => {
   if (!event) {
@@ -7,7 +8,7 @@ const makeContext = ({ event }) => {
 
   return {
     user,
-    viewer: {}
+    viewer: getViewer({ event })
   };
 };
 

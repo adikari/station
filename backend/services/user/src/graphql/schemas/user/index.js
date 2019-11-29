@@ -29,11 +29,8 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    user: (_, __, { user, viewer }) => {
-      const userId = viewer.id;
-
-      return userId ? user.byId({ userId }) : null;
-    },
+    user: (_, __, { user, viewer: { id } }) =>
+      id ? user.byId({ userId: id }) : null,
     userById: (_, { id }, { user }) => user.byId({ userId: id }),
     userByEmail: (_, { email }, { user }) => user.byEmail({ email })
   },
