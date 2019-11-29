@@ -15,6 +15,12 @@ jest.mock('../../util/logger', () => ({
 DynamoDB.DocumentClient.prototype.put = mockPut;
 
 const realDate = Date;
+const mockUser = {
+  userId: 'anton',
+  email: 'anton@foo.com',
+  username: 'sonofanton',
+  picture: 'picture'
+};
 
 describe('CreateUser', () => {
   afterEach(() => {
@@ -25,13 +31,6 @@ describe('CreateUser', () => {
     Date.now = jest.fn(() => 12345);
 
     mockPut.mockReturnValue({ promise: () => Promise.resolve({}) });
-
-    const mockUser = {
-      userId: 'anton',
-      email: 'anton@foo.com',
-      username: 'sonofanton',
-      picture: 'picture'
-    };
 
     const response = await createUser(mockUser);
 
@@ -46,13 +45,6 @@ describe('CreateUser', () => {
     mockPut.mockReturnValue({
       promise: () => Promise.reject(new Error('some error'))
     });
-
-    const mockUser = {
-      userId: 'anton',
-      email: 'anton@foo.com',
-      username: 'sonofanton',
-      picture: 'picture'
-    };
 
     const response = await createUser(mockUser);
 
