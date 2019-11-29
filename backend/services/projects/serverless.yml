@@ -14,30 +14,27 @@ provider:
 
 plugins:
   - serverless-offline
+  - serverless-domain-manager
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    packager: 'yarn'
+
+  customDomain:
+    domainName: ${opt:stage}-internal-api.acloud.guru
+    stage: ${opt:stage}
+    basePath: projects
+    certificateName: '*.acloud.guru'
+    createRoute53Record: false
+    endpointType: 'regional'
 
 package:
-  exclude:
-    - .serverless/**
-    - .build/**
-    - .buildkite/**
-    - bin/**
-    - coverage/**
-    - src/**/*.test.js
-    - .editorconfig
-    - .env-*
-    - .tslint*
-    - .envrc
-    - .gitignore
-    - .node-version
-    - .yarnrc
-    - "*.sh"
-    - package.json
-    - yarn.lock
-    - README.md
-    - webpack.config.js
-    - tsconfig.json
-    - __mocks__
-    - __test__
+  include:
+    - src/**
+    - '!src/**/*.test.js'
 
 functions:
   graphql:
