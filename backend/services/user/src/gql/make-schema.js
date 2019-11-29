@@ -1,7 +1,7 @@
-const { makeExecutableSchema } = require('graphql-tools');
-const merge = require('lodash.merge');
-const rootSchema = require('./schemas/root');
-const userSchema = require('./schemas/user');
+import { makeExecutableSchema } from 'graphql-tools';
+import merge from 'lodash.merge';
+import * as rootSchema from './schemas/root';
+import * as userSchema from './schemas/user';
 
 const makeSchema = () => {
   const schemas = [rootSchema, userSchema];
@@ -21,4 +21,4 @@ const makeSchema = () => {
   });
 };
 
-module.exports = { makeSchema };
+export { makeSchema };

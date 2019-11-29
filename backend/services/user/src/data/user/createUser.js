@@ -1,6 +1,6 @@
-const { documentClient } = require('../../clients/documentClient');
-const { USER_TABLE_NAME } = require('../../config');
-const { logger } = require('../../util/logger');
+import { documentClient } from 'clients/documentClient';
+import { USER_TABLE_NAME } from 'config';
+import { logger } from 'util/logger';
 
 const createUser = ({
   userId,
@@ -35,4 +35,4 @@ const createUser = ({
     });
 };
 
-module.exports = { createUser };
+export { createUser };

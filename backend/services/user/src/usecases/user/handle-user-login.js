@@ -1,4 +1,4 @@
-const { logger } = require('../../util/logger');
+import { logger } from 'util/logger';
 
 const makeHandleUserLogin = ({ createUser, getUserByEmail }) => async ({
   userId,
@@ -8,7 +8,7 @@ const makeHandleUserLogin = ({ createUser, getUserByEmail }) => async ({
   firstname,
   lastname
 }) => {
-  const foundUser = await getUserByEmail(email);
+  const foundUser = await getUserByEmail({ email });
 
   if (foundUser) {
     logger.log('User found. skipping..', foundUser);
@@ -20,4 +20,4 @@ const makeHandleUserLogin = ({ createUser, getUserByEmail }) => async ({
   return createUser({ userId, email, picture, username, firstname, lastname });
 };
 
-module.exports = { makeHandleUserLogin };
+export { makeHandleUserLogin };

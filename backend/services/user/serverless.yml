@@ -16,8 +16,14 @@ provider:
 plugins:
   - serverless-offline
   - serverless-domain-manager
+  - serverless-webpack
 
 custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    packager: 'yarn'
+
   customDomain:
     domainName: ${opt:stage}-internal-api.acloud.guru
     stage: ${opt:stage}
@@ -33,7 +39,7 @@ package:
 
 functions:
   graphql:
-    handler: src/graphql/index.handler
+    handler: src/gql/index.handler
     memorySize: 1536
     timeout: 30
     events:

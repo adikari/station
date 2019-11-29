@@ -1,5 +1,5 @@
-const get = require('lodash.get');
-const { handleUserLogin } = require('../usecases/user');
+import get from 'lodash.get';
+import { handleUserLogin } from 'usecases/user';
 
 const handler = async event => {
   const { data } = JSON.parse(event.body);
@@ -22,6 +22,4 @@ const handler = async event => {
   };
 };
 
-module.exports = {
-  handler
-};
+export { handler };

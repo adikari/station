@@ -2,7 +2,7 @@ const mockQuery = jest.fn();
 const mockError = jest.fn();
 
 const { DynamoDB } = require('aws-sdk');
-const { getUserByEmail } = require('./getUserByEmail');
+const { getUserByEmail } = require('data/user/getUserByEmail');
 
 DynamoDB.DocumentClient.prototype.query = mockQuery;
 
@@ -27,7 +27,7 @@ describe('#getUser', () => {
       promise: () => Promise.resolve({ Items: [mockUser] })
     });
 
-    const response = await getUserByEmail('anton@foo.com');
+    const response = await getUserByEmail({ email: 'anton@foo.com' });
 
     expect(mockQuery).toHaveBeenCalledWith({
       TableName: 'user-table-name',
@@ -44,7 +44,7 @@ describe('#getUser', () => {
       promise: () => Promise.reject(new Error('some error'))
     });
 
-    const response = await getUserByEmail('anton@foo.com');
+    const response = await getUserByEmail({ email: 'anton@foo.com' });
 
     expect(mockQuery).toHaveBeenCalledWith({
       TableName: 'user-table-name',
