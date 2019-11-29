@@ -1,5 +1,5 @@
-const user = require('../usecases/user');
-const { getViewer } = require('../util/viewer');
+import * as user from 'usecases/user';
+import { getViewer } from 'util/viewer';
 
 const makeContext = ({ event }) => {
   if (!event) {
@@ -12,4 +12,4 @@ const makeContext = ({ event }) => {
   };
 };
 
-module.exports = { makeContext };
+export { makeContext };

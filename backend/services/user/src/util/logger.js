@@ -3,4 +3,4 @@ const logger = {
   error: (msg, error) => console.error(msg, JSON.stringify(error))
 };
 
-module.exports = { logger };
+export { logger };

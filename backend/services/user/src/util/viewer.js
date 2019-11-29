@@ -1,4 +1,4 @@
-const get = require('lodash.get');
+import get from 'lodash.get';
 
 const getViewer = ({ event }) => {
   const viewerString = get(event, 'headers.viewer') || '';
@@ -11,4 +11,4 @@ const getViewer = ({ event }) => {
   }
 };
 
-module.exports = { getViewer };
+export { getViewer };

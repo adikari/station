@@ -1,10 +1,9 @@
-const { createUser, getUserByEmail, getUserById } = require('../../data/user');
-const { makeHandleUserLogin } = require('./handle-user-login');
+import { createUser, getUserByEmail, getUserById } from 'data/user';
+import { makeHandleUserLogin } from 'usecases/user/handle-user-login';
 
 const handleUserLogin = makeHandleUserLogin({ createUser, getUserByEmail });
 
-module.exports = {
-  handleUserLogin,
-  byEmail: getUserByEmail,
-  byId: getUserById
-};
+const byEmail = getUserByEmail;
+const byId = getUserById;
+
+export { createUser, byEmail, handleUserLogin, byId };

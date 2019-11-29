@@ -1,4 +1,4 @@
-const property = require('lodash.property');
+import property from 'lodash.property';
 
 const typeDefs = `
   type User {
@@ -39,4 +39,4 @@ const resolvers = {
   }
 };
 
-module.exports = { typeDefs, resolvers };
+export { typeDefs, resolvers };

@@ -1,7 +1,7 @@
-const get = require('lodash.get');
-const { documentClient } = require('../../clients/documentClient');
-const { USER_TABLE_NAME } = require('../../config');
-const { logger } = require('../../util/logger');
+import get from 'lodash.get';
+import { documentClient } from 'clients/documentClient';
+import { USER_TABLE_NAME } from 'config';
+import { logger } from 'util/logger';
 
 const getUserById = ({ userId }) => {
   const params = {
@@ -19,4 +19,4 @@ const getUserById = ({ userId }) => {
     });
 };
 
-module.exports = { getUserById };
+export { getUserById };

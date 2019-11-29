@@ -1,5 +1,3 @@
-const { createUser } = require('./createUser');
-const { getUserByEmail } = require('./getUserByEmail');
-const { getUserById } = require('./getUserById');
-
-module.exports = { createUser, getUserByEmail, getUserById };
+export * from 'data/user/getUserByEmail';
+export * from 'data/user/getUserById';
+export * from 'data/user/createUser';

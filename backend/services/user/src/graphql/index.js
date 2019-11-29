@@ -1,10 +1,12 @@
-const { ApolloServer } = require('apollo-server-lambda');
-const { makeSchema } = require('./make-schema');
-const { makeContext } = require('./make-context');
+import { ApolloServer } from 'apollo-server-lambda';
+import { makeSchema } from 'graphql/make-schema';
+import { makeContext } from 'graphql/make-context';
 
 const server = new ApolloServer({
   schema: makeSchema(),
   context: makeContext
 });
 
-exports.handler = server.createHandler();
+const handler = server.createHandler();
+
+export { handler };

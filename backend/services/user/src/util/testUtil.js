@@ -9,7 +9,4 @@ const getEvent = viewer => {
   };
 };
 
-module.exports = {
-  getEvent,
-  getViewer
-};
+export { getEvent, getViewer };

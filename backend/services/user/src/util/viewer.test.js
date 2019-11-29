@@ -1,4 +1,4 @@
-const { getViewer } = require('./viewer');
+import { getViewer } from 'util/viewer';
 
 describe('#viewer', () => {
   it('should return empty object when no viewer', () => {
