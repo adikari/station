@@ -45,6 +45,7 @@ Resources:
                   - dynamodb:PutItem
                 Resource:
                   - !GetAtt UserTable.Arn
+                  - !Join [ '', [ !GetAtt UserTable.Arn, '/*' ] ]
 
   UserTable:
     Type: AWS::DynamoDB::Table
