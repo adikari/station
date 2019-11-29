@@ -1,4 +1,4 @@
-const { graphql } = require('graphql');
+import { graphql } from 'graphql';
 
 const mockCreateProject = jest.fn();
 jest.mock('../../../generated/prisma-client', () => {

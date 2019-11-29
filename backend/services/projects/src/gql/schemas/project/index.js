@@ -1,4 +1,4 @@
-const property = require('lodash.property');
+import property from 'lodash.property';
 
 const typeDefs = `
   extend type Query {
@@ -115,4 +115,4 @@ const resolvers = {
   }
 };
 
-module.exports = { typeDefs, resolvers };
+export { typeDefs, resolvers };

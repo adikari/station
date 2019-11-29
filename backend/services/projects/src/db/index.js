@@ -1,3 +1,5 @@
-const { prisma } = require('../generated/prisma-client');
+import { prisma } from 'generated/prisma-client';
 
-module.exports = { db: prisma };
+const db = prisma;
+
+export { db };

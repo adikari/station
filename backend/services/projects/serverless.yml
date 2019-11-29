@@ -38,7 +38,7 @@ package:
 
 functions:
   graphql:
-    handler: src/graphql/index.handler
+    handler: src/gql/index.handler
     memorySize: 1536
     timeout: 30
     events:

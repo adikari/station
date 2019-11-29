@@ -1,11 +1,9 @@
-const { db } = require('../../db');
-const { makeGetProjects } = require('./get-projects');
-const { makeCreateProject } = require('./create-project');
-const { makeGetProjectCount } = require('./get-project-count');
+import { db } from 'db';
+import { makeGetProjects } from 'usecases/project/get-projects';
+import { makeCreateProject } from 'usecases/project/create-project';
+import { makeGetProjectCount } from 'usecases/project/get-project-count';
 
-const getProjects = makeGetProjects({ db });
-const getProjectCount = makeGetProjectCount({ db });
+export const getProjects = makeGetProjects({ db });
+export const getProjectCount = makeGetProjectCount({ db });
 
-const createProject = makeCreateProject({ db });
-
-module.exports = { getProjects, getProjectCount, createProject };
+export const createProject = makeCreateProject({ db });

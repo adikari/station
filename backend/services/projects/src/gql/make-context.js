@@ -1,4 +1,4 @@
-const project = require('../usecases/project');
+import * as project from 'usecases/project';
 
 const makeContext = ({ event }) => {
   if (!event) {
@@ -13,4 +13,4 @@ const makeContext = ({ event }) => {
   };
 };
 
-module.exports = { makeContext };
+export { makeContext };
