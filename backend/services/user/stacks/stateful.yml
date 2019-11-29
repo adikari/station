@@ -7,6 +7,9 @@ Parameters:
   UserTableName:
     Description: User Table Name
     Type: String
+  UserTableEmailIndex:
+    Description: User Table Email Index
+    Type: String
 
 Resources:
   LambdaExecutionRole:
@@ -42,6 +45,7 @@ Resources:
                   - dynamodb:PutItem
                 Resource:
                   - !GetAtt UserTable.Arn
+                  - !Join [ '', [ !GetAtt UserTable.Arn, '/*' ] ]
 
   UserTable:
     Type: AWS::DynamoDB::Table
@@ -56,9 +60,18 @@ Resources:
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
+        - AttributeName: email
+          AttributeType: S
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: !Ref UserTableEmailIndex
+          KeySchema:
+            - AttributeName: email
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
       Tags:
         - Key: DataClassification
           Value: non-personal

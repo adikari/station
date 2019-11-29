@@ -1,0 +1,43 @@
+{
+  "resource": "/auth0/login",
+  "path": "/user/auth0/login",
+  "httpMethod": "POST",
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+    "resourceId": "3rrkie",
+    "resourcePath": "/auth0/login",
+    "httpMethod": "POST",
+    "extendedRequestId": "D5oWqHwDoAMFqqQ=",
+    "requestTime": "29/Nov/2019:02:50:05 +0000",
+    "path": "/user/auth0/login",
+    "accountId": "574504572869",
+    "protocol": "HTTP/1.1",
+    "stage": "subasha",
+    "domainPrefix": "dev-subasha-api",
+    "requestTimeEpoch": 1574995805776,
+    "requestId": "24152083-00ac-45f7-9f8f-e308cc2fc131",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "cognitoIdentityId": null,
+      "apiKey": "TyQaMjw5Bx7NU3l4MXOMd8giwlyWmcFS7JRB8he9",
+      "principalOrgId": null,
+      "cognitoAuthenticationType": null,
+      "userArn": null,
+      "apiKeyId": "ust9q1le99",
+      "userAgent": null,
+      "accountId": null,
+      "caller": null,
+      "sourceIp": "35.167.74.121",
+      "accessKey": null,
+      "cognitoAuthenticationProvider": null,
+      "user": null
+    },
+    "domainName": "dev-subasha-api.acloud.guru",
+    "apiId": "az9ndbi6lb"
+  },
+  "body": "{\"version\":1,\"data\":{\"client\":\"MyWebApp\",\"connection\":{\"name\":\"MyDbConn\",\"strategy\":\"auth0\"},\"user\":{\"name\":\"jdoe@foobar.com\",\"email\":\"jdoe@foobar.com\",\"user_id\":\"auth0|0123456789\",\"nickname\":\"jdoe\",\"picture\":\"http://foobar.com/pictures/jdoe.png\",\"identities\":[{\"provider\":\"auth0\",\"user_id\":\"0123456789\",\"connection\":\"Username-Password-Connection\",\"isSocial\":false}],\"persistent\":{}},\"query\":{\"scope\":\"openid\"}}}",
+  "isBase64Encoded": false
+}

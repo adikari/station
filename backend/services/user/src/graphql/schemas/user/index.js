@@ -25,7 +25,7 @@ const typeDefs = `
   }
 
   extend type Mutation {
-    createProject(input: CreateUserInput!): User
+    createUser(input: CreateUserInput!): User
   }
 `;
 
@@ -34,8 +34,8 @@ const resolvers = {
     users: () => []
   },
   Mutation: {
-    createProject: (_, { input }, { project, viewer: { id } }) =>
-      project.createProject({ ...input, owner: id })
+    createUser: (_, { input }, { user, viewer: { id } }) =>
+      user.create({ ...input, owner: id })
   }
 };
 

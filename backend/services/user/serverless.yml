@@ -7,8 +7,11 @@ provider:
   runtime: nodejs10.x
   region: us-east-1
   versionFunctions: false
+  role: ${cf:user-stateful-${opt:stage}.LambdaExecutionRole}
   environment:
     STAGE: ${opt:stage}
+    USER_TABLE_NAME: ${ssm:/${opt:stage}/user/config/USER_TABLE_NAME}
+    USER_TABLE_EMAIL_INDEX: ${ssm:/${opt:stage}/user/config/USER_TABLE_EMAIL_INDEX}
 
 plugins:
   - serverless-offline
@@ -44,3 +47,19 @@ functions:
         threshold: 3000
     tags:
       FunctionType: graphql_api
+
+  auth0Login:
+    handler: src/handlers/login.handler
+    memorySize: 512
+    timeout: 20
+    events:
+      - http:
+          path: auth0/login
+          method: post
+          private: true
+    alarms:
+      - name: functionInvocations
+        threshold: 3000
+    tags:
+      FunctionType: webhook
+      WebHookSource: auth0

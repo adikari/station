@@ -1,3 +1,6 @@
-const createUser = () => console.log('creating user');
+const { createUser, getUserByEmail } = require('../../data/user');
+const { makeHandleUserLogin } = require('./handle-user-login');
 
-module.exports = { createUser };
+const handleUserLogin = makeHandleUserLogin({ createUser, getUserByEmail });
+
+module.exports = { handleUserLogin };
