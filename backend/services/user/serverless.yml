@@ -11,6 +11,7 @@ provider:
   environment:
     STAGE: ${opt:stage}
     USER_TABLE_NAME: ${ssm:/${opt:stage}/user/config/USER_TABLE_NAME}
+    USER_TABLE_EMAIL_INDEX: ${ssm:/${opt:stage}/user/config/USER_TABLE_EMAIL_INDEX}
 
 plugins:
   - serverless-offline

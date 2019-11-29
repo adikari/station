@@ -1,22 +1,22 @@
-const mockGetUser = jest.fn();
+const mockGetUserByEmail = jest.fn();
 const mockCreateUser = jest.fn();
 
 const { handler } = require('./login');
 const event = require('../../events/auth0login');
 
 jest.mock('../data/user', () => ({
-  getUser: mockGetUser,
+  getUserByEmail: mockGetUserByEmail,
   createUser: mockCreateUser
 }));
 
 describe('#loginHandler', () => {
   describe('user does not exist', () => {
     it('should create user', async () => {
-      mockGetUser.mockResolvedValue(null);
+      mockGetUserByEmail.mockResolvedValue(null);
       mockCreateUser.mockResolvedValue({ id: 'userid' });
       const response = await handler(event);
 
-      expect(mockGetUser).toHaveBeenCalledWith('auth0|0123456789');
+      expect(mockGetUserByEmail).toHaveBeenCalledWith('jdoe@foobar.com');
       expect(mockCreateUser).toHaveBeenCalledWith({
         userId: 'auth0|0123456789',
         email: 'jdoe@foobar.com',
@@ -33,10 +33,10 @@ describe('#loginHandler', () => {
 
   describe('user exists', () => {
     it('should do nothing', async () => {
-      mockGetUser.mockResolvedValue({ id: 'userid' });
+      mockGetUserByEmail.mockResolvedValue({ id: 'userid' });
       await handler(event);
 
-      expect(mockGetUser).toHaveBeenCalledWith('auth0|0123456789');
+      expect(mockGetUserByEmail).toHaveBeenCalledWith('jdoe@foobar.com');
       expect(mockCreateUser).not.toHaveBeenCalled();
     });
   });

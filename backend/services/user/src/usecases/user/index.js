@@ -1,6 +1,6 @@
-const { createUser, getUser } = require('../../data/user');
+const { createUser, getUserByEmail } = require('../../data/user');
 const { makeHandleUserLogin } = require('./handle-user-login');
 
-const handleUserLogin = makeHandleUserLogin({ createUser, getUser });
+const handleUserLogin = makeHandleUserLogin({ createUser, getUserByEmail });
 
 module.exports = { handleUserLogin };

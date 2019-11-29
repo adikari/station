@@ -2,7 +2,7 @@ const mockGet = jest.fn();
 const mockError = jest.fn();
 
 const { DynamoDB } = require('aws-sdk');
-const { getUser } = require('./getUser');
+const { getUserById } = require('./getUserById');
 
 DynamoDB.DocumentClient.prototype.get = mockGet;
 
@@ -26,7 +26,7 @@ describe('#getUser', () => {
       promise: () => Promise.resolve({ Item: mockUser })
     });
 
-    const response = await getUser('anton');
+    const response = await getUserById('anton');
 
     expect(mockGet).toHaveBeenCalledWith({
       TableName: 'user-table-name',
@@ -41,7 +41,7 @@ describe('#getUser', () => {
       promise: () => Promise.reject(new Error('some error'))
     });
 
-    const response = await getUser('anton');
+    const response = await getUserById('anton');
 
     expect(mockGet).toHaveBeenCalledWith({
       TableName: 'user-table-name',

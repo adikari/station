@@ -1,4 +1,4 @@
-const makeHandleUserLogin = ({ createUser, getUser }) => async ({
+const makeHandleUserLogin = ({ createUser, getUserByEmail }) => async ({
   userId,
   email,
   picture,
@@ -6,7 +6,7 @@ const makeHandleUserLogin = ({ createUser, getUser }) => async ({
   firstname,
   lastname
 }) => {
-  const foundUser = await getUser(userId);
+  const foundUser = await getUserByEmail(email);
 
   if (foundUser) {
     return null;

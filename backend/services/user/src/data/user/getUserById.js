@@ -3,7 +3,7 @@ const { documentClient } = require('../../clients/documentClient');
 const { USER_TABLE_NAME } = require('../../config');
 const { logger } = require('../../util/logger');
 
-const getUser = userId => {
+const getUserById = userId => {
   const params = {
     TableName: USER_TABLE_NAME,
     Key: { userId }
@@ -19,4 +19,4 @@ const getUser = userId => {
     });
 };
 
-module.exports = { getUser };
+module.exports = { getUserById };
