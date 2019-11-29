@@ -1,7 +1,7 @@
-const { graphql } = require('graphql');
-const { makeContext } = require('../make-context');
-const { makeSchema } = require('../make-schema');
-const { getEvent } = require('../../util/testUtil');
+import { graphql } from 'graphql';
+import { makeContext } from 'gql/make-context';
+import { makeSchema } from 'gql/make-schema';
+import { getEvent } from 'util/testUtil';
 
 describe('#Mutation.echo', () => {
   it('gets user by email', async () => {

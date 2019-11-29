@@ -2,7 +2,7 @@ const mockError = jest.fn();
 const mockPut = jest.fn();
 
 const { DynamoDB } = require('aws-sdk');
-const { createUser } = require('./createUser');
+const { createUser } = require('data/user/createUser');
 
 jest.mock('../../config', () => ({
   USER_TABLE_NAME: 'user-table-name'

@@ -1,8 +1,8 @@
-const { DynamoDB } = require('aws-sdk');
-const { graphql } = require('graphql');
-const { makeContext } = require('../../make-context');
-const { makeSchema } = require('../../make-schema');
-const { getEvent } = require('../../../util/testUtil');
+import { DynamoDB } from 'aws-sdk';
+import { graphql } from 'graphql';
+import { makeContext } from 'gql/make-context';
+import { makeSchema } from 'gql/make-schema';
+import { getEvent } from 'util/testUtil';
 
 const mockGet = jest.fn();
 DynamoDB.DocumentClient.prototype.get = mockGet;

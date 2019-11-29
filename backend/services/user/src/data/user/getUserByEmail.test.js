@@ -2,7 +2,7 @@ const mockQuery = jest.fn();
 const mockError = jest.fn();
 
 const { DynamoDB } = require('aws-sdk');
-const { getUserByEmail } = require('./getUserByEmail');
+const { getUserByEmail } = require('data/user/getUserByEmail');
 
 DynamoDB.DocumentClient.prototype.query = mockQuery;
 

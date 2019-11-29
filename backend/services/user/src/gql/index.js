@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-lambda';
-import { makeSchema } from 'graphql/make-schema';
-import { makeContext } from 'graphql/make-context';
+import { makeSchema } from 'gql/make-schema';
+import { makeContext } from 'gql/make-context';
 
 const server = new ApolloServer({
   schema: makeSchema(),

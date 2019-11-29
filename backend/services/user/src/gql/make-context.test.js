@@ -1,4 +1,4 @@
-const { makeContext } = require('./make-context');
+import { makeContext } from 'gql/make-context';
 
 describe('#makeContext', () => {
   it('should throw error if no lambda event', async () => {
