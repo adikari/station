@@ -1,3 +1,5 @@
+const property = require('lodash.property');
+
 const typeDefs = `
   type User {
     id: ID
@@ -5,7 +7,6 @@ const typeDefs = `
     email: String
     firstname: String
     lastname: String
-    accessRole: AccessRole
   }
 
   enum AccessRole {
@@ -21,7 +22,9 @@ const typeDefs = `
   }
 
   extend type Query {
-    users: [User]
+    user: User
+    userById(id: ID!): User
+    userByEmail(email: String!): User
   }
 
   extend type Mutation {
@@ -31,7 +34,16 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    userById: (_, { userId }, { user }) => user.byId({ userId })
+    user: (_, __, { user, viewer }) => {
+      const userId = viewer.id;
+
+      return userId ? user.byId({ userId }) : null;
+    },
+    userById: (_, { id }, { user }) => user.byId({ userId: id }),
+    userByEmail: (_, { email }, { user }) => user.byEmail({ email })
+  },
+  User: {
+    id: property('userId')
   }
 };
 
