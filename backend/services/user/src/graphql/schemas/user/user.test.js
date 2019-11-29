@@ -29,4 +29,22 @@ describe('#Query.user', () => {
     expect(errors).toBeUndefined();
     expect(data.user).toEqual({ id: '123' });
   });
+
+  it('return null if viewer does not have userid', async () => {
+    const query = `
+      {
+        user {
+          id
+        }
+      }
+    `;
+
+    const context = makeContext({ event: getEvent('') });
+
+    const { data, errors } = await graphql(makeSchema(), query, null, context);
+
+    expect(mockGet).not.toHaveBeenCalled();
+    expect(errors).toBeUndefined();
+    expect(data.user).toEqual(null);
+  });
 });
