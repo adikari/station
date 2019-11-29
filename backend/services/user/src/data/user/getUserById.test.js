@@ -27,7 +27,7 @@ describe('#getUser', () => {
       promise: () => Promise.resolve({ Item: mockUser })
     });
 
-    const response = await getUserById('anton');
+    const response = await getUserById({ userId: 'anton' });
 
     expect(mockGet).toHaveBeenCalledWith({
       TableName: 'user-table-name',
@@ -42,7 +42,7 @@ describe('#getUser', () => {
       promise: () => Promise.reject(new Error('some error'))
     });
 
-    const response = await getUserById('anton');
+    const response = await getUserById({ userId: 'anton' });
 
     expect(mockGet).toHaveBeenCalledWith({
       TableName: 'user-table-name',

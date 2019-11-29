@@ -16,7 +16,9 @@ describe('#loginHandler', () => {
       mockCreateUser.mockResolvedValue({ id: 'userid' });
       const response = await handler(event);
 
-      expect(mockGetUserByEmail).toHaveBeenCalledWith('jdoe@foobar.com');
+      expect(mockGetUserByEmail).toHaveBeenCalledWith({
+        email: 'jdoe@foobar.com'
+      });
       expect(mockCreateUser).toHaveBeenCalledWith({
         userId: 'auth0|0123456789',
         email: 'jdoe@foobar.com',
@@ -36,7 +38,9 @@ describe('#loginHandler', () => {
       mockGetUserByEmail.mockResolvedValue({ id: 'userid' });
       await handler(event);
 
-      expect(mockGetUserByEmail).toHaveBeenCalledWith('jdoe@foobar.com');
+      expect(mockGetUserByEmail).toHaveBeenCalledWith({
+        email: 'jdoe@foobar.com'
+      });
       expect(mockCreateUser).not.toHaveBeenCalled();
     });
   });

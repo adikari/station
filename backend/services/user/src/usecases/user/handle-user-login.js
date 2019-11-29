@@ -8,7 +8,7 @@ const makeHandleUserLogin = ({ createUser, getUserByEmail }) => async ({
   firstname,
   lastname
 }) => {
-  const foundUser = await getUserByEmail(email);
+  const foundUser = await getUserByEmail({ email });
 
   if (foundUser) {
     logger.log('User found. skipping..', foundUser);

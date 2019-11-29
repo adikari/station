@@ -31,11 +31,7 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    users: () => []
-  },
-  Mutation: {
-    createUser: (_, { input }, { user, viewer: { id } }) =>
-      user.create({ ...input, owner: id })
+    userById: (_, { userId }, { user }) => user.byId({ userId })
   }
 };
 
