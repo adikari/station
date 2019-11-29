@@ -7,7 +7,7 @@ const handler = async event => {
 
   const user = {
     email: auth0User.email,
-    id: auth0User.user_id,
+    userId: auth0User.user_id,
     picture: auth0User.picture,
     username: auth0User.name
   };

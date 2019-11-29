@@ -10,7 +10,7 @@ module.exports = {
 
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'text-summary', 'lcov'],
-  collectCoverage: true,
+  collectCoverage: false,
   coverageThreshold: {
     global: {
       statements: 90,

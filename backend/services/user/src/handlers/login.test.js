@@ -18,7 +18,7 @@ describe('#loginHandler', () => {
 
       expect(mockGetUser).toHaveBeenCalledWith('auth0|0123456789');
       expect(mockCreateUser).toHaveBeenCalledWith({
-        id: 'auth0|0123456789',
+        userId: 'auth0|0123456789',
         email: 'jdoe@foobar.com',
         picture: 'http://foobar.com/pictures/jdoe.png',
         username: 'jdoe@foobar.com'

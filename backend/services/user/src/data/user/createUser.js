@@ -1,11 +1,29 @@
 const { documentClient } = require('../../clients/documentClient');
 const { USER_TABLE_NAME } = require('../../config');
+const { logger } = require('../../util/logger');
 
-const createUser = user => {
-  console.log(USER_TABLE_NAME);
-  console.log('user', user);
-  console.log(documentClient);
-  return Promise.resolve(user);
+const createUser = ({ userId, email, username, picture }) => {
+  const user = {
+    userId,
+    email,
+    username,
+    picture,
+    createdAt: Date.now()
+  };
+
+  const params = {
+    TableName: USER_TABLE_NAME,
+    Item: user
+  };
+
+  return documentClient
+    .put(params)
+    .promise()
+    .then(() => user)
+    .catch(error => {
+      logger.error('Could not create user', error);
+      return null;
+    });
 };
 
 module.exports = { createUser };
