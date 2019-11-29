@@ -21,7 +21,7 @@ describe('#loginHandler', () => {
         userId: 'auth0|0123456789',
         email: 'jdoe@foobar.com',
         picture: 'http://foobar.com/pictures/jdoe.png',
-        username: 'jdoe@foobar.com'
+        username: 'jdoe'
       });
 
       expect(response).toEqual({

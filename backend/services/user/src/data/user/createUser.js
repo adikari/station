@@ -2,12 +2,21 @@ const { documentClient } = require('../../clients/documentClient');
 const { USER_TABLE_NAME } = require('../../config');
 const { logger } = require('../../util/logger');
 
-const createUser = ({ userId, email, username, picture }) => {
+const createUser = ({
+  userId,
+  email,
+  username,
+  picture,
+  firstname,
+  lastname
+}) => {
   const user = {
     userId,
     email,
     username,
     picture,
+    firstname,
+    lastname,
     createdAt: Date.now()
   };
 

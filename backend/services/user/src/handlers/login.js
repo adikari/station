@@ -9,7 +9,9 @@ const handler = async event => {
     email: auth0User.email,
     userId: auth0User.user_id,
     picture: auth0User.picture,
-    username: auth0User.name
+    username: auth0User.nickname,
+    firstname: auth0User.given_name,
+    lastname: auth0User.family_name
   };
 
   const response = await handleUserLogin(user);

@@ -2,7 +2,9 @@ const makeHandleUserLogin = ({ createUser, getUser }) => async ({
   userId,
   email,
   picture,
-  username
+  username,
+  firstname,
+  lastname
 }) => {
   const foundUser = await getUser(userId);
 
@@ -10,7 +12,7 @@ const makeHandleUserLogin = ({ createUser, getUser }) => async ({
     return null;
   }
 
-  return createUser({ userId, email, picture, username });
+  return createUser({ userId, email, picture, username, firstname, lastname });
 };
 
 module.exports = { makeHandleUserLogin };

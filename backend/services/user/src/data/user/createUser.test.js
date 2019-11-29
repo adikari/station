@@ -19,7 +19,9 @@ const mockUser = {
   userId: 'anton',
   email: 'anton@foo.com',
   username: 'sonofanton',
-  picture: 'picture'
+  picture: 'picture',
+  firstname: 'dinesh',
+  lastname: 'lastname'
 };
 
 describe('CreateUser', () => {
