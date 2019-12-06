@@ -1,10 +1,13 @@
+import { ApolloGateway } from '@apollo/gateway';
 import { ApolloServer } from 'apollo-server-lambda';
-import { makeSchema } from 'gql/make-schema';
 import { makeContext } from 'gql/make-context';
 
+const gateway = new ApolloGateway();
+
 const server = new ApolloServer({
-  schema: makeSchema(),
-  context: makeContext
+  gateway,
+  context: makeContext,
+  subscriptions: false
 });
 
 const handler = server.createHandler();

@@ -13,6 +13,7 @@
     "dev": "sls offline start --port 3000"
   },
   "dependencies": {
+    "@apollo/gateway": "^0.11.4",
     "apollo-server-lambda": "^2.9.7",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
