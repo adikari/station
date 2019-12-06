@@ -1,0 +1,46 @@
+#!/bin/bash
+
+STAGE=""
+
+usage="USAGE: $(basename "$0") [-s|--stage] <stage>
+
+where:
+    -s | --stage        stage for deployment (required)"
+
+while [ $# -gt 0 ]; do
+    if [[ $1 =~ "--"* ]]; then
+        case $1 in
+            --help|-h) echo "$usage"; exit; ;;
+            --stage|-s) STAGE=$2;;
+        esac
+    fi
+    shift
+done
+
+export ENGINE_API_KEY=$(aws ssm get-parameter --name \
+  /$STAGE/user/secret/ENGINE_API_KEY \
+  --query "Parameter.Value" \
+  --with-decryption | tr -d \")
+
+export GRAPHQL_ENDPOINT=$(aws ssm get-parameter --name \
+  /$STAGE/user/secret/GRAPHQL_ENDPOINT \
+  --query "Parameter.Value" \
+  --with-decryption | tr -d \")
+
+export SERVICE_API_KEY=$(aws ssm get-parameter --name \
+  /$STAGE/user/secret/SERVICE_API_KEY \
+  --query "Parameter.Value" \
+  --with-decryption | tr -d \")
+
+
+[ -z "$STAGE" ] && echo "$usage" && exit 1
+[ -z "$ENGINE_API_KEY" ] && echo "Missing ENGINE_API_KEY." && exit 1
+[ -z "$GRAPHQL_ENDPOINT" ] && echo "Missing GRAPHQL_ENDPOINT" && exit 1
+[ -z "$SERVICE_API_KEY" ] && echo "Missing SERVICE_API_KEY" && exit 1
+
+echo "Pushing schema to apollo engine..."
+yarn apollo service:push --tag "$STAGE"
+
+unset GRAPHQL_ENDPOINT
+unset SERVICE_API_KEY
+unset ENGINE_API_KEY

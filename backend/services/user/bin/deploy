@@ -28,28 +28,10 @@ done
 
 [ -z "$STAGE" ] && echo "$usage" && exit 1
 
-export ENGINE_API_KEY=$(aws ssm get-parameter --name \
-  /$STAGE/user/secret/ENGINE_API_KEY \
-  --query "Parameter.Value" \
-  --with-decryption | tr -d \")
-
-export GRAPHQL_ENDPOINT=$(aws ssm get-parameter --name \
-  /$STAGE/user/secret/GRAPHQL_ENDPOINT \
-  --query "Parameter.Value" \
-  --with-decryption | tr -d \")
-
-export SERVICE_API_KEY=$(aws ssm get-parameter --name \
-  /$STAGE/user/secret/SERVICE_API_KEY \
-  --query "Parameter.Value" \
-  --with-decryption | tr -d \")
-
 export AWS_ACCOUNT_ID
 export STAGE
 
 [ -z "$AWS_ACCOUNT_ID" ] && echo "Could not determine AWS account id." && exit 1
-[ -z "$ENGINE_API_KEY" ] && echo "Missing ENGINE_API_KEY." && exit 1
-[ -z "$GRAPHQL_ENDPOINT" ] && echo "Missing GRAPHQL_ENDPOINT" && exit 1
-[ -z "$SERVICE_API_KEY" ] && echo "Missing SERVICE_API_KEY" && exit 1
 
 CURRENT_DIR=$(pwd)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
@@ -68,8 +50,7 @@ echo "Deploying resources..."
 echo "Deploying serverless..."
 ./node_modules/.bin/sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
 
-echo "Pushing schema to apollo engine..."
-yarn apollo service:push --tag "$STAGE"
+./bin/deploy-schema --stage "$STAGE"
 
 cd $CURRENT_DIR
 
