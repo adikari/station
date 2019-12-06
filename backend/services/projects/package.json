@@ -9,7 +9,9 @@
     "deploy:prisma": "./bin/deploy-prisma",
     "deploy": "./bin/deploy",
     "test": "jest",
-    "lint": "eslint --ignore-pattern 'src/generated' 'src/**/*.js'"
+    "lint": "eslint --ignore-pattern 'src/generated' 'src/**/*.js'",
+    "start": "sls offline start --port 3002",
+    "dev": "sls offline start --port 3000"
   },
   "dependencies": {
     "apollo-server-lambda": "^2.9.9",
