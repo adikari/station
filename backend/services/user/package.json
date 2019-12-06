@@ -9,7 +9,6 @@
     "deploy": "./bin/deploy",
     "test": "jest",
     "lint": "eslint 'src/**/*.js'",
-    "start": "sls offline start --port 3001",
     "dev": "sls offline start --port 3000"
   },
   "dependencies": {
