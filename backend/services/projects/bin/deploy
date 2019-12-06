@@ -58,6 +58,13 @@ echo "Deploying Prisma server"
 echo "Deploying serverless..."
 ./node_modules/.bin/sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
 
+echo "Generating schema.."
+./node_modules/.bin/webpack ./bin/generate-schema.js --output generate-schema.js
+node generate-schema.js
+
+ENGINE_API_KEY=$(yarn --silent oprah fetch -k /"$STAGE"/projects/secret/APOLLO_ENGINE_API_KEY -s "$STAGE")
+yarn apollo service:push --tag="$STAGE" --key="$ENGINE_API_KEY"
+
 cd $CURRENT_DIR
 unset AWS_ACCOUNT_ID
 unset STAGE
