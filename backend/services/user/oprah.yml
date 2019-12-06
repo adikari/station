@@ -8,7 +8,7 @@ config:
     USER_TABLE_NAME: 'users-${stage}'
     USER_TABLE_EMAIL_INDEX: idx-user-email
 
-# secret:
-#   path: /${stage}/user/secret
-#   required:
-#     DB_NAME: 'Database name for prisma server'
+secret:
+  path: /${stage}/user/secret
+  required:
+    APOLLO_ENGINE_API_KEY: 'apollo engine api key'
