@@ -10,6 +10,7 @@ provider:
   role: ${cf:user-stateful-${opt:stage}.LambdaExecutionRole}
   environment:
     STAGE: ${opt:stage}
+    ENGINE_API_KEY: ${ssm:/${opt:stage}/user/secret/ENGINE_API_KEY~true}
     USER_TABLE_NAME: ${ssm:/${opt:stage}/user/config/USER_TABLE_NAME}
     USER_TABLE_EMAIL_INDEX: ${ssm:/${opt:stage}/user/config/USER_TABLE_EMAIL_INDEX}
 

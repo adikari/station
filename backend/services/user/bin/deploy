@@ -26,17 +26,30 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-if [ -z "$STAGE" ]; then
-  echo "$usage"; exit 1;
-fi
+[ -z "$STAGE" ] && echo "$usage" && exit 1
+
+export ENGINE_API_KEY=$(aws ssm get-parameter --name \
+  /$STAGE/user/secret/ENGINE_API_KEY \
+  --query "Parameter.Value" \
+  --with-decryption | tr -d \")
+
+export GRAPHQL_ENDPOINT=$(aws ssm get-parameter --name \
+  /$STAGE/user/secret/GRAPHQL_ENDPOINT \
+  --query "Parameter.Value" \
+  --with-decryption | tr -d \")
+
+export SERVICE_API_KEY=$(aws ssm get-parameter --name \
+  /$STAGE/user/secret/SERVICE_API_KEY \
+  --query "Parameter.Value" \
+  --with-decryption | tr -d \")
 
 export AWS_ACCOUNT_ID
 export STAGE
 
-if [ -z "$AWS_ACCOUNT_ID" ]; then
-  echo "Could not read determine AWS account id.";
-  exit 1;
-fi
+[ -z "$AWS_ACCOUNT_ID" ] && echo "Could not determine AWS account id." && exit 1
+[ -z "$ENGINE_API_KEY" ] && echo "Missing ENGINE_API_KEY." && exit 1
+[ -z "$GRAPHQL_ENDPOINT" ] && echo "Missing GRAPHQL_ENDPOINT" && exit 1
+[ -z "$SERVICE_API_KEY" ] && echo "Missing SERVICE_API_KEY" && exit 1
 
 CURRENT_DIR=$(pwd)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
@@ -49,20 +62,21 @@ $CONFIGURE && ./node_modules/.bin/oprah run --stage ${STAGE}
 
 echo "AWS Account ID: $AWS_ACCOUNT_ID"
 
-# echo "Deploying resources..."
-# ./node_modules/.bin/kumo run --stage "$STAGE"
+echo "Deploying resources..."
+./node_modules/.bin/kumo run --stage "$STAGE"
 
-# echo "Deploying serverless..."
-# ./node_modules/.bin/sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
+echo "Deploying serverless..."
+./node_modules/.bin/sls deploy --stage "$STAGE" --region "$AWS_REGION" --verbose
 
-echo "Generating schema.."
-./node_modules/.bin/webpack ./bin/generate-schema.js --output generate-schema.js
-node generate-schema.js
-
-ENGINE_API_KEY=$(yarn --silent oprah fetch -k /"$STAGE"/user/secret/APOLLO_ENGINE_API_KEY -s "$STAGE")
-yarn apollo service:push --tag="$STAGE" --key="$ENGINE_API_KEY"
+echo "Pushing schema to apollo engine..."
+yarn apollo service:push --tag "$STAGE"
 
 cd $CURRENT_DIR
+
 unset AWS_ACCOUNT_ID
 unset STAGE
+unset GRAPHQL_ENDPOINT
+unset SERVICE_API_KEY
+unset ENGINE_API_KEY
+
 

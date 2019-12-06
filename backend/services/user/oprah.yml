@@ -11,4 +11,6 @@ config:
 secret:
   path: /${stage}/user/secret
   required:
-    APOLLO_ENGINE_API_KEY: 'apollo engine api key'
+    ENGINE_API_KEY: 'apollo engine api key'
+    GRAPHQL_ENDPOINT: 'graphql endpoint for introspection'
+    SERVICE_API_KEY: 'user service API Gateway key'
