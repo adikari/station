@@ -1,0 +1,10 @@
+service: gateway-service
+provider:
+  name: ssm
+
+config:
+  path: /${stage}/gateway/config
+  defaults:
+    RESOURCE: 'gateway-${stage}'
+
+

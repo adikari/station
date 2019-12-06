@@ -1,0 +1,8 @@
+provider:
+  name: ssm
+
+stacks:
+  - templateFile: './stacks/stateful.yml'
+    stackName: gateway-stateful-${opt:stage}
+    parameters:
+      Stage: ${opt:stage}

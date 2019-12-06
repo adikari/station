@@ -1,0 +1,30 @@
+---
+Description: Stateful resources for gateway service
+Parameters:
+  Stage:
+    Description: Stage Name
+    Type: String
+
+Resources:
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      RoleName: !Sub gateway-role-${Stage}
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: 'assumeContentRolePolicy'
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
+
+Outputs:
+  LambdaExecutionRole:
+    Description: Lambda Execution Role Arn
+    Value:
+      'Fn::GetAtt': [LambdaExecutionRole, Arn]
