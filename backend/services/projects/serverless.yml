@@ -8,9 +8,10 @@ provider:
   region: us-east-1
   versionFunctions: false
   environment:
+    STAGE: ${opt:stage}
     PRISMA_ENDPOINT: ${cf:projects-fargate-${opt:stage}.ExternalUrl}
     PRISMA_SECRET: ${ssm:/${opt:stage}/projects/secret/PRISMA_SECRET~true}
-    STAGE: ${opt:stage}
+    ENGINE_API_KEY: ${ssm:/${opt:stage}/projects/secret/ENGINE_API_KEY~true}
 
 plugins:
   - serverless-offline

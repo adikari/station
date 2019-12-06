@@ -15,4 +15,6 @@ secret:
     DB_PASSWORD: 'Database password for prisma server'
     PRISMA_API_SECRET: 'Prisma Server Management API Secret'
     PRISMA_SECRET: 'Prisma secret'
-    APOLLO_ENGINE_API_KEY: 'apollo engine api key'
+    ENGINE_API_KEY: 'apollo engine api key'
+    GRAPHQL_ENDPOINT: 'graphql endpoint for introspection'
+    SERVICE_API_KEY: 'user service API Gateway key'
