@@ -22,7 +22,7 @@
     "identity": {
       "cognitoIdentityPoolId": null,
       "cognitoIdentityId": null,
-      "apiKey": "TyQaMjw5Bx7NU3l4MXOMd8giwlyWmcFS7JRB8he9",
+      "apiKey": "bogus-api-key",
       "principalOrgId": null,
       "cognitoAuthenticationType": null,
       "userArn": null,
